@@ -1,0 +1,26 @@
+from pydantic import BaseModel,EmailStr, constr
+
+
+
+class TaskBase(BaseModel):
+    title: str
+    description: str
+    completed: bool = False
+
+
+class TaskCreate(TaskBase):
+    pass
+
+class TaskUpdate(TaskBase):
+    pass
+
+class TaskResponse(TaskBase):
+    id: int
+
+    class Config:
+        from_attributes = True
+
+
+
+# Employee schemas
+
