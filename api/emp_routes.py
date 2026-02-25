@@ -12,7 +12,6 @@ router = APIRouter(prefix="/employees", tags=["Employees"])
 
  
 
-
 @router.get("/")
 def read_root():
     return{"message":"CORS is working!"}
