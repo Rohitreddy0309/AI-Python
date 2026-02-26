@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 
+from app.core.database import engine, Base
+from app.api.v1.router import api_router
+
 app = FastAPI()
 
+Base.metadata.create_all(bind=engine)
+
+app.include_router(api_router)
 
 @app.get("/")
-def index():
-    return {'data' :{'name':'Akshay'}}
-
-@app.get("/about")
-def about():
-    return{'data' :'about page'}
+def root():
+    return {"message": "CRUD API is running "}
