@@ -2,7 +2,6 @@ from pydantic import BaseModel, ConfigDict
 from datetime import date
 
 
-# Base schema (shared fields)
 class PlantBase(BaseModel):
     name: str
     watering_interval_days: int
@@ -10,12 +9,10 @@ class PlantBase(BaseModel):
     last_watered: date
 
 
-# Schema for creating a plant
 class PlantCreate(PlantBase):
     pass
 
 
-# Schema for updating a plant
 class PlantUpdate(BaseModel):
     name: str | None = None
     watering_interval_days: int | None = None
@@ -23,7 +20,6 @@ class PlantUpdate(BaseModel):
     last_watered: date | None = None
 
 
-# Schema for returning plant data (response model)
 class PlantResponse(PlantBase):
     id: int
 
