@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class Settings:
-    DATABASE_URL: str = "postgresql+psycopg2://postgres:123456789@localhost:5432/postgres"
+    DATABASE_URL = os.getenv("DATABASE_URL")
 
 settings = Settings()
