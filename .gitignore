@@ -5,16 +5,17 @@ __pycache__/
 *.py[cod]
 
 *$py.class
+
+*.pyc
  
 # Virtual environments
 
 venv/
 
-env/
-
-.venv/
-
 .env
+
+
+*.env
  
 # Distribution / packaging
 
