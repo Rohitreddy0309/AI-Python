@@ -1,6 +1,7 @@
 import os
-
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://postgres:ranathi%401306@localhost:5432/Plantdatabase"
-)
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+class Settings:
+    DATABASE_URL: str = os.getenv("DATABASE_URL")
+settings = Settings()
