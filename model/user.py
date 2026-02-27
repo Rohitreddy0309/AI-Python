@@ -3,11 +3,11 @@ from sqlalchemy.sql import func
 from core.database import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class Plant(Base):
+    __tablename__ = "plants"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    email = Column(String, unique=True, nullable=False)
-    is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    watering_interval_days = Column(Integer, nullable=False)
+    sunlight = Column(String, nullable=False)
+    last_watered = Column(DateTime(timezone=True), nullable=False)

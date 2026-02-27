@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.models import Plant
+from model.user import Plant
 
 class PlantRepository:
 

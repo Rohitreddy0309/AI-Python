@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from app.repositories.plant_repository import PlantRepository
-from app.schemas.schemas import PlantCreate
-from app.models.models import Plant
-from app.utils.exception import NotFoundException
+from repositories.plant_repository import PlantRepository
+from schemas.schemas import PlantCreate
+from model.user import Plant
+from utils.exception import NotFoundException
 
 
 class PlantService:
