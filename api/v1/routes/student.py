@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from app.core.database import get_db
-from app.schemas.student import (
+from core.database import get_db
+from schemas.student import (
     StudentCreate,
     StudentResponse,
     StudentUpdate,
 )
-from app.services.student_service import StudentService
+from services.student_service import StudentService
 
 router = APIRouter()
 service = StudentService()

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.api.v1.router import api_router
-from app.core.database import Base, engine
+from api.v1.router import api_router
+from core.database import Base, engine
 
 
 # Create database tables

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.student import Student  
+from models.student import Student  
 
 
 class StudentRepository:

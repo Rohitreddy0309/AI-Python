@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from app.models.student import Student
-from app.repositories.student_repository import StudentRepository
-from app.schemas.student import StudentCreate, StudentUpdate
-from app.utils.exceptions import ConflictException, NotFoundException 
+from models.student import Student
+from repositories.student_repository import StudentRepository
+from schemas.student import StudentCreate, StudentUpdate
+from utils.exceptions import ConflictException, NotFoundException 
 
 
 class StudentService:
