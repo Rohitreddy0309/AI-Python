@@ -204,3 +204,21 @@ LINE 1: UPDATE employees SET name='string', department='string', pro...
 2026-03-02 16:39:16,055 - app_logger - DEBUG - Fetching all tasks from the database
 2026-03-02 16:39:16,058 - app_logger - INFO - Retrieved 5 tasks from DB
 2026-03-02 16:39:16,058 - app_logger - INFO - Returning 5 tasks
+2026-03-02 17:45:39,937 - app_logger - INFO - Received request to fetch all tasks
+2026-03-02 17:45:39,939 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-02 17:45:39,954 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-02 17:45:39,955 - app_logger - INFO - Returning 5 tasks
+2026-03-02 17:50:19,643 - app_logger - INFO - Received request to create employee with data: name='prasad' department='c++' project='testing' email='prasad@example.com' blood_group='A+' PH_number='8985244889'
+2026-03-02 17:50:19,644 - app_logger - DEBUG - Creating new employee with data: {'name': 'prasad', 'department': 'c++', 'project': 'testing', 'email': 'prasad@example.com', 'blood_group': 'A+', 'PH_number': '8985244889'}
+2026-03-02 17:50:19,652 - app_logger - ERROR - Error creating employee: (psycopg2.errors.InvalidTextRepresentation) invalid input value for enum department_enum: "c++"
+LINE 1: ...mail, blood_group, "PH_number") VALUES ('prasad', 'c++', 'te...
+                                                             ^
+
+[SQL: INSERT INTO employees (name, department, project, email, blood_group, "PH_number") VALUES (%(name)s, %(department)s, %(project)s, %(email)s, %(blood_group)s, %(PH_number)s) RETURNING employees.id]
+[parameters: {'name': 'prasad', 'department': 'c++', 'project': 'testing', 'email': 'prasad@example.com', 'blood_group': 'A+', 'PH_number': '8985244889'}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-03-02 17:50:19,654 - app_logger - ERROR - AppException occurred: DatabaseException - Error creating employee in the database
+2026-03-02 17:50:57,628 - app_logger - INFO - Received request to create employee with data: name='prasad' department='Python' project='testing' email='prasad@example.com' blood_group='A+' PH_number='8985244889'
+2026-03-02 17:50:57,629 - app_logger - DEBUG - Creating new employee with data: {'name': 'prasad', 'department': 'Python', 'project': 'testing', 'email': 'prasad@example.com', 'blood_group': 'A+', 'PH_number': '8985244889'}
+2026-03-02 17:50:57,651 - app_logger - INFO - Employee created successfully: prasad
+2026-03-02 17:50:57,652 - app_logger - INFO - Employee created successfully: prasad

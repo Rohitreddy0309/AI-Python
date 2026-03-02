@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from schemas.tasks_schemas import TaskCreate, TaskUpdate
 from models.tasks import Task
 from core.config import logger
-
+from utils.exceptions import NotFoundException, DatabaseException, DuplicateEntryException
 
 # CRUD operations for Task model
 
@@ -16,7 +16,7 @@ def get_all_tasks(db: Session):
         return tasks
     except Exception as e:
         logger.error(f"Error fetching tasks: {e}")
-        return []
+        raise DatabaseException("Error fetching tasks from the database")
 
 def get_task_by_id(db: Session, task_id: int):
     logger.debug(f"Fetching task with ID: {task_id}")
@@ -29,7 +29,7 @@ def get_task_by_id(db: Session, task_id: int):
         return tasks
     except Exception as e:
         logger.error(f"Error fetching task: {e}")
-        return None
+        raise DatabaseException("Error fetching task from the database")
     
 
 def create_task(db: Session, task: TaskCreate):
@@ -44,7 +44,7 @@ def create_task(db: Session, task: TaskCreate):
     except SQLAlchemyError as e:
         logger.error(f"Error creating task: {e}")
         db.rollback()
-        return None
+        raise DatabaseException("Error creating task in the database")
 
 def update_task(db: Session, task_id: int, task_data: TaskUpdate):
     logger.debug(f"Updating task with ID: {task_id} using data: {task_data}")
@@ -63,7 +63,8 @@ def update_task(db: Session, task_id: int, task_data: TaskUpdate):
     except SQLAlchemyError as e:
         logger.error(f"Error updating task: {e}")
         db.rollback()
-        return None
+        raise DatabaseException("Error updating task in the database")
+    
 def delete_task(db: Session, task_id: int):
     logger.debug(f"Deleting task with ID: {task_id}")
     db_task = get_task_by_id(db, task_id)
@@ -78,4 +79,4 @@ def delete_task(db: Session, task_id: int):
     except SQLAlchemyError as e:
         logger.error(f"Error deleting task: {e}")
         db.rollback()
-        return None
+        raise DatabaseException("Error deleting task from the database")

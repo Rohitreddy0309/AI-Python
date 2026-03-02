@@ -4,6 +4,9 @@ from models import employees
 from schemas.emp_schemas import EmployeeCreate, EmployeeUpdate
 from models.employees import Employee
 from core.config import logger
+from utils.exceptions import NotFoundException, DuplicateEntryException, DatabaseException
+
+
 # CRUD operations for Employee model
 
 def get_all_employees(db: Session):
@@ -14,7 +17,7 @@ def get_all_employees(db: Session):
         return employees
     except Exception as e:
         logger.error(f"Error fetching employees: {e}")
-        return[]
+        return DatabaseException("Error fetching employees from the database")
 
 
 def get_employee_by_id(db: Session, employee_id: int):
@@ -28,7 +31,7 @@ def get_employee_by_id(db: Session, employee_id: int):
         return employees
     except SQLAlchemyError as e:
         logger.error(f"Database error: {e}")
-        return None
+        raise DatabaseException("Error fetching employee from the database")
     
 
 def create_employee_db(db: Session, employee_data: dict):
@@ -43,7 +46,7 @@ def create_employee_db(db: Session, employee_data: dict):
     except SQLAlchemyError as e:
         logger.error(f"Error creating employee: {e}")
         db.rollback()
-        return None
+        raise DatabaseException("Error creating employee in the database")
 
 def update_employee(db: Session, employee_id: int, employee_data):
     logger.debug(f"Updating employee with ID: {employee_id} using data: {employee_data}")
@@ -62,7 +65,7 @@ def update_employee(db: Session, employee_id: int, employee_data):
     except SQLAlchemyError as e:
         logger.error(f"Error updating employeeID : {employee_id}:{e}")
         db.rollback()
-        return None
+        raise DatabaseException("Error updating employee in the database")
 
 def delete_employee(db: Session, employee_id: int):
     logger.debug(f"Attempting to delete employee with ID: {employee_id}")
@@ -80,7 +83,4 @@ def delete_employee(db: Session, employee_id: int):
     except SQLAlchemyError as e:
         logger.error(f"Error deleting employee with ID: {employee_id}: {e}")
         db.rollback()
-        return False
-
-def get_employees_by_department(db: Session, department: str):
-    return db.query(Employee).filter(Employee.department == department).all()
+        raise DatabaseException("Error deleting employee from the database")
