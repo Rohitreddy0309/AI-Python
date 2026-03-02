@@ -1,0 +1,206 @@
+2026-03-02 11:57:16,707 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 11:57:16,707 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 11:57:16,735 - app_logger - ERROR - Error fetching employees: object of type 'module' has no len()
+2026-03-02 11:57:16,735 - app_logger - WARNING - No employees found in the database
+2026-03-02 12:13:47,683 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 12:13:47,684 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 12:13:47,695 - app_logger - ERROR - Error fetching employees: object of type 'module' has no len()
+2026-03-02 12:13:47,695 - app_logger - WARNING - No employees found in the database
+2026-03-02 12:28:54,983 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 12:28:54,983 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 12:28:54,994 - app_logger - ERROR - Error fetching employees: object of type 'module' has no len()
+2026-03-02 12:28:54,994 - app_logger - WARNING - No employees found in the database
+2026-03-02 12:33:25,549 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 12:33:25,550 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 12:33:25,559 - app_logger - INFO - Retrieved 2 employees from DB
+2026-03-02 12:33:25,559 - app_logger - INFO - Returning 2 employees
+2026-03-02 12:35:54,143 - app_logger - INFO - Received request to create employee with data: name='Akshay' department='JAVA' project='Power BI' email='akshay@example.com' blood_group='O+' PH_number='989809099'
+2026-03-02 12:35:54,143 - app_logger - DEBUG - Creating new employee with data: {'name': 'Akshay', 'department': 'JAVA', 'project': 'Power BI', 'email': 'akshay@example.com', 'blood_group': 'O+', 'PH_number': '989809099'}
+2026-03-02 12:35:54,159 - app_logger - ERROR - Error creating employee: (psycopg2.errors.InvalidTextRepresentation) invalid input value for enum department_enum: "JAVA"
+LINE 1: ...mail, blood_group, "PH_number") VALUES ('Akshay', 'JAVA', 'P...
+                                                             ^
+
+[SQL: INSERT INTO employees (name, department, project, email, blood_group, "PH_number") VALUES (%(name)s, %(department)s, %(project)s, %(email)s, %(blood_group)s, %(PH_number)s) RETURNING employees.id]
+[parameters: {'name': 'Akshay', 'department': 'JAVA', 'project': 'Power BI', 'email': 'akshay@example.com', 'blood_group': 'O+', 'PH_number': '989809099'}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-03-02 12:35:54,159 - app_logger - ERROR - Failed to create employee
+2026-03-02 12:36:41,647 - app_logger - INFO - Received request to create employee with data: name='Akshay' department='Java' project='Power BI' email='akshay@example.com' blood_group='O+' PH_number='989809099'
+2026-03-02 12:36:41,647 - app_logger - DEBUG - Creating new employee with data: {'name': 'Akshay', 'department': 'Java', 'project': 'Power BI', 'email': 'akshay@example.com', 'blood_group': 'O+', 'PH_number': '989809099'}
+2026-03-02 12:36:41,665 - app_logger - INFO - Employee created successfully: Akshay
+2026-03-02 12:36:41,665 - app_logger - INFO - Employee created successfully: Akshay
+2026-03-02 12:57:49,183 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 12:57:49,184 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 12:57:49,199 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 12:57:49,199 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:00,254 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:00,255 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:00,266 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:00,266 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:00,462 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:00,462 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:00,464 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:00,464 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:01,036 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:01,037 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:01,038 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:01,038 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:01,203 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:01,203 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:01,205 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:01,205 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:01,388 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:01,388 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:01,390 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:01,391 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:01,623 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:01,623 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:01,625 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:01,625 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:01,845 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:01,845 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:01,847 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:01,847 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:02,061 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:03:02,061 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:03:02,063 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:03:02,063 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:03:40,682 - app_logger - INFO - Received request to delete employee with ID: 5
+2026-03-02 13:03:40,682 - app_logger - DEBUG - Attempting to delete employee with ID: 5
+2026-03-02 13:03:40,683 - app_logger - DEBUG - Fetching employee with ID: 5
+2026-03-02 13:06:56,287 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:06:56,288 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:06:56,298 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 13:06:56,299 - app_logger - INFO - Returning 3 employees
+2026-03-02 13:55:23,117 - app_logger - INFO - Received request to delete employee with ID: 5
+2026-03-02 13:55:23,118 - app_logger - DEBUG - Attempting to delete employee with ID: 5
+2026-03-02 13:55:23,119 - app_logger - DEBUG - Fetching employee with ID: 5
+2026-03-02 13:57:44,770 - app_logger - INFO - Received request to delete employee with ID: 5
+2026-03-02 13:57:44,772 - app_logger - DEBUG - Attempting to delete employee with ID: 5
+2026-03-02 13:57:44,773 - app_logger - DEBUG - Fetching employee with ID: 5
+2026-03-02 13:57:44,789 - app_logger - INFO - Employee found: Akshay
+2026-03-02 13:57:44,796 - app_logger - INFO - Employee with ID: 5 deleted successfully
+2026-03-02 13:57:44,797 - app_logger - INFO - Employee with ID: 5 deleted successfully
+2026-03-02 13:58:10,544 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 13:58:10,544 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 13:58:10,548 - app_logger - INFO - Retrieved 2 employees from DB
+2026-03-02 13:58:10,549 - app_logger - INFO - Returning 2 employees
+2026-03-02 13:59:26,096 - app_logger - INFO - Received request to create employee with data: name='Rohit' department='Python' project='API' email='rohit@example.com' blood_group='AB+' PH_number='929293892'
+2026-03-02 13:59:26,097 - app_logger - DEBUG - Creating new employee with data: {'name': 'Rohit', 'department': 'Python', 'project': 'API', 'email': 'rohit@example.com', 'blood_group': 'AB+', 'PH_number': '929293892'}
+2026-03-02 13:59:26,112 - app_logger - INFO - Employee created successfully: Rohit
+2026-03-02 13:59:26,112 - app_logger - INFO - Employee created successfully: Rohit
+2026-03-02 14:00:12,499 - app_logger - INFO - Received request to create employee with data: name='Ranathi' department='Java' project='Fast API' email='Ranathi@example.com' blood_group='B+' PH_number='929293892'
+2026-03-02 14:00:12,500 - app_logger - DEBUG - Creating new employee with data: {'name': 'Ranathi', 'department': 'Java', 'project': 'Fast API', 'email': 'Ranathi@example.com', 'blood_group': 'B+', 'PH_number': '929293892'}
+2026-03-02 14:00:12,506 - app_logger - ERROR - Error creating employee: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "employees_PH_number_key"
+DETAIL:  Key ("PH_number")=(929293892) already exists.
+
+[SQL: INSERT INTO employees (name, department, project, email, blood_group, "PH_number") VALUES (%(name)s, %(department)s, %(project)s, %(email)s, %(blood_group)s, %(PH_number)s) RETURNING employees.id]
+[parameters: {'name': 'Ranathi', 'department': 'Java', 'project': 'Fast API', 'email': 'Ranathi@example.com', 'blood_group': 'B+', 'PH_number': '929293892'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-03-02 14:00:12,506 - app_logger - ERROR - Failed to create employee
+2026-03-02 14:00:22,820 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:00:22,820 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:00:22,822 - app_logger - INFO - Retrieved 3 employees from DB
+2026-03-02 14:00:22,822 - app_logger - INFO - Returning 3 employees
+2026-03-02 14:00:36,809 - app_logger - INFO - Received request to create employee with data: name='Ranathi' department='Java' project='Fast API' email='Ranathi@example.com' blood_group='B+' PH_number='929293892'
+2026-03-02 14:00:36,810 - app_logger - DEBUG - Creating new employee with data: {'name': 'Ranathi', 'department': 'Java', 'project': 'Fast API', 'email': 'Ranathi@example.com', 'blood_group': 'B+', 'PH_number': '929293892'}
+2026-03-02 14:00:36,814 - app_logger - ERROR - Error creating employee: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "employees_PH_number_key"
+DETAIL:  Key ("PH_number")=(929293892) already exists.
+
+[SQL: INSERT INTO employees (name, department, project, email, blood_group, "PH_number") VALUES (%(name)s, %(department)s, %(project)s, %(email)s, %(blood_group)s, %(PH_number)s) RETURNING employees.id]
+[parameters: {'name': 'Ranathi', 'department': 'Java', 'project': 'Fast API', 'email': 'Ranathi@example.com', 'blood_group': 'B+', 'PH_number': '929293892'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-03-02 14:00:36,815 - app_logger - ERROR - Failed to create employee
+2026-03-02 14:01:01,523 - app_logger - INFO - Received request to create employee with data: name='Ranathi' department='Java' project='Fast API' email='Ranathi@example.com' blood_group='B+' PH_number='929293887'
+2026-03-02 14:01:01,524 - app_logger - DEBUG - Creating new employee with data: {'name': 'Ranathi', 'department': 'Java', 'project': 'Fast API', 'email': 'Ranathi@example.com', 'blood_group': 'B+', 'PH_number': '929293887'}
+2026-03-02 14:01:01,528 - app_logger - INFO - Employee created successfully: Ranathi
+2026-03-02 14:01:01,529 - app_logger - INFO - Employee created successfully: Ranathi
+2026-03-02 14:01:11,249 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:01:11,249 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:01:11,251 - app_logger - INFO - Retrieved 4 employees from DB
+2026-03-02 14:01:11,251 - app_logger - INFO - Returning 4 employees
+2026-03-02 14:02:09,865 - app_logger - INFO - Received request to create employee with data: name='manoj' department='Java' project='Fast API' email='manoj@example.com' blood_group='B-' PH_number='929273849'
+2026-03-02 14:02:09,866 - app_logger - DEBUG - Creating new employee with data: {'name': 'manoj', 'department': 'Java', 'project': 'Fast API', 'email': 'manoj@example.com', 'blood_group': 'B-', 'PH_number': '929273849'}
+2026-03-02 14:02:09,872 - app_logger - INFO - Employee created successfully: manoj
+2026-03-02 14:02:09,872 - app_logger - INFO - Employee created successfully: manoj
+2026-03-02 14:02:31,734 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:02:31,734 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:02:31,736 - app_logger - INFO - Retrieved 5 employees from DB
+2026-03-02 14:02:31,736 - app_logger - INFO - Returning 5 employees
+2026-03-02 14:03:09,044 - app_logger - INFO - Received request to delete employee with ID: 3
+2026-03-02 14:03:09,044 - app_logger - DEBUG - Attempting to delete employee with ID: 3
+2026-03-02 14:03:09,044 - app_logger - DEBUG - Fetching employee with ID: 3
+2026-03-02 14:03:09,047 - app_logger - INFO - Employee found: prasad
+2026-03-02 14:03:09,050 - app_logger - INFO - Employee with ID: 3 deleted successfully
+2026-03-02 14:03:09,050 - app_logger - INFO - Employee with ID: 3 deleted successfully
+2026-03-02 14:04:17,875 - app_logger - INFO - Received request to update employee with ID: 10 and data: name='akshay' department='Java' project='API' email='akshay@example.com' blood_group='O-' PH_number='9985333376'
+2026-03-02 14:04:17,876 - app_logger - DEBUG - Updating employee with ID: 10 using data: {'name': 'akshay', 'department': 'Java', 'project': 'API', 'email': 'akshay@example.com', 'blood_group': 'O-', 'PH_number': '9985333376'}
+2026-03-02 14:04:17,876 - app_logger - DEBUG - Fetching employee with ID: 10
+2026-03-02 14:04:17,879 - app_logger - INFO - Employee found: manoj
+2026-03-02 14:11:06,393 - app_logger - INFO - Received request to update employee with ID: 10 and data: name='manoj' department='C' project='C Project' email='manoj@example.com' blood_group='A-' PH_number='8985244889'
+2026-03-02 14:11:06,394 - app_logger - DEBUG - Updating employee with ID: 10 using data: {'name': 'manoj', 'department': 'C', 'project': 'C Project', 'email': 'manoj@example.com', 'blood_group': 'A-', 'PH_number': '8985244889'}
+2026-03-02 14:11:06,394 - app_logger - DEBUG - Fetching employee with ID: 10
+2026-03-02 14:11:06,409 - app_logger - INFO - Employee found: manoj
+2026-03-02 14:11:06,415 - app_logger - ERROR - Error updating employeeID : 10:(psycopg2.errors.InvalidTextRepresentation) invalid input value for enum department_enum: "C"
+LINE 1: UPDATE employees SET department='C', project='C Project', bl...
+                                        ^
+
+[SQL: UPDATE employees SET department=%(department)s, project=%(project)s, blood_group=%(blood_group)s, "PH_number"=%(PH_number)s WHERE employees.id = %(employees_id)s]
+[parameters: {'department': 'C', 'project': 'C Project', 'blood_group': 'A-', 'PH_number': '8985244889', 'employees_id': 10}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-03-02 14:11:06,416 - app_logger - WARNING - Employee with ID: 10 not found for update
+2026-03-02 14:11:22,828 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:11:22,829 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:11:22,833 - app_logger - INFO - Retrieved 4 employees from DB
+2026-03-02 14:11:22,833 - app_logger - INFO - Returning 4 employees
+2026-03-02 14:12:13,155 - app_logger - INFO - Received request to update employee with ID: 9 and data: name='harshit' department='C' project='C Project' email='harshit@example.com' blood_group='A-' PH_number='8985288889'
+2026-03-02 14:12:13,156 - app_logger - DEBUG - Updating employee with ID: 9 using data: {'name': 'harshit', 'department': 'C', 'project': 'C Project', 'email': 'harshit@example.com', 'blood_group': 'A-', 'PH_number': '8985288889'}
+2026-03-02 14:12:13,157 - app_logger - DEBUG - Fetching employee with ID: 9
+2026-03-02 14:12:13,161 - app_logger - INFO - Employee found: Ranathi
+2026-03-02 14:12:13,167 - app_logger - ERROR - Error updating employeeID : 9:(psycopg2.errors.InvalidTextRepresentation) invalid input value for enum department_enum: "C"
+LINE 1: UPDATE employees SET name='harshit', department='C', project...
+                                                        ^
+
+[SQL: UPDATE employees SET name=%(name)s, department=%(department)s, project=%(project)s, email=%(email)s, blood_group=%(blood_group)s, "PH_number"=%(PH_number)s WHERE employees.id = %(employees_id)s]
+[parameters: {'name': 'harshit', 'department': 'C', 'project': 'C Project', 'email': 'harshit@example.com', 'blood_group': 'A-', 'PH_number': '8985288889', 'employees_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-03-02 14:12:13,168 - app_logger - WARNING - Employee with ID: 9 not found for update
+2026-03-02 14:12:25,063 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:12:25,064 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:12:25,066 - app_logger - INFO - Retrieved 4 employees from DB
+2026-03-02 14:12:25,066 - app_logger - INFO - Returning 4 employees
+2026-03-02 14:12:37,993 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 14:12:37,993 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 14:12:37,995 - app_logger - INFO - Retrieved 4 employees from DB
+2026-03-02 14:12:37,995 - app_logger - INFO - Returning 4 employees
+2026-03-02 14:13:09,333 - app_logger - INFO - Received request to update employee with ID: 9 and data: name='string' department='string' project='sttm' email='user@example.com' blood_group='string' PH_number='string'
+2026-03-02 14:13:09,333 - app_logger - DEBUG - Updating employee with ID: 9 using data: {'name': 'string', 'department': 'string', 'project': 'sttm', 'email': 'user@example.com', 'blood_group': 'string', 'PH_number': 'string'}
+2026-03-02 14:13:09,333 - app_logger - DEBUG - Fetching employee with ID: 9
+2026-03-02 14:13:09,335 - app_logger - INFO - Employee found: Ranathi
+2026-03-02 14:13:09,338 - app_logger - ERROR - Error updating employeeID : 9:(psycopg2.errors.InvalidTextRepresentation) invalid input value for enum department_enum: "string"
+LINE 1: UPDATE employees SET name='string', department='string', pro...
+                                                       ^
+
+[SQL: UPDATE employees SET name=%(name)s, department=%(department)s, project=%(project)s, email=%(email)s, blood_group=%(blood_group)s, "PH_number"=%(PH_number)s WHERE employees.id = %(employees_id)s]
+[parameters: {'name': 'string', 'department': 'string', 'project': 'sttm', 'email': 'user@example.com', 'blood_group': 'string', 'PH_number': 'string', 'employees_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2026-03-02 14:13:09,339 - app_logger - WARNING - Employee with ID: 9 not found for update
+2026-03-02 14:15:08,349 - app_logger - INFO - Received request to update employee with ID: 9 and data: name='harshith' department='Java' project='sttm' email='harshit@example.com' blood_group='AB-' PH_number='9898765645'
+2026-03-02 14:15:08,350 - app_logger - DEBUG - Updating employee with ID: 9 using data: {'name': 'harshith', 'department': 'Java', 'project': 'sttm', 'email': 'harshit@example.com', 'blood_group': 'AB-', 'PH_number': '9898765645'}
+2026-03-02 14:15:08,351 - app_logger - DEBUG - Fetching employee with ID: 9
+2026-03-02 14:15:08,354 - app_logger - INFO - Employee found: Ranathi
+2026-03-02 14:15:08,369 - app_logger - INFO - EMployee with ID: 9updated
+2026-03-02 16:31:50,981 - app_logger - INFO - Received request to fetch all tasks
+2026-03-02 16:31:50,982 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-02 16:31:50,992 - app_logger - INFO - Retrieved 4 tasks from DB
+2026-03-02 16:37:42,275 - app_logger - INFO - Received request to fetch all tasks
+2026-03-02 16:37:42,276 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-02 16:37:42,286 - app_logger - INFO - Retrieved 4 tasks from DB
+2026-03-02 16:37:42,287 - app_logger - INFO - Returning 4 tasks
+2026-03-02 16:38:59,472 - app_logger - INFO - Received request to create task with data: title='add loggins' description='in core create config.py' completed=True
+2026-03-02 16:38:59,474 - app_logger - DEBUG - Creating new task with data: title='add loggins' description='in core create config.py' completed=True
+2026-03-02 16:38:59,491 - app_logger - INFO - Task created successfully with ID: 10
+2026-03-02 16:38:59,491 - app_logger - INFO - Task created successfully: add loggins
+2026-03-02 16:39:16,055 - app_logger - INFO - Received request to fetch all tasks
+2026-03-02 16:39:16,055 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-02 16:39:16,058 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-02 16:39:16,058 - app_logger - INFO - Returning 5 tasks

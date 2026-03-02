@@ -4,7 +4,8 @@ from repository import employees_repo
 
 
 def list_all_employees(db: Session):
-    return employees_repo.get_all_employees(db)
+    employees = employees_repo.get_all_employees(db)
+    return employees
 
 def get_employee_by_id(db: Session, employee_id: int):
     return employees_repo.get_employee_by_id(db, employee_id)

@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
-from dotenv import load_dotenv
-
+from dotenv import  load_dotenv
+from core.config import SQLALCHEMY_DATABASE_URL
 load_dotenv()
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -16,3 +16,5 @@ def get_db():
         yield db
     finally:
         db.close()
+
+print("✅ DATABASE URL:", SQLALCHEMY_DATABASE_URL)
