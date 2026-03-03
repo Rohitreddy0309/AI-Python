@@ -6,8 +6,13 @@ class User(base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)   # Required field
-    email = Column(String, unique=True, nullable=False)
-    isActive = Column(Boolean, default=True)
-    createdAt = Column(DateTime(timezone=True), server_default=func.now())
-  
+    name = Column(String)
+    email = Column(String, unique=True)
+    department = Column(String)
+    is_active = Column(Boolean, default=True)
+    created_date = Column(
+    DateTime(timezone=True),
+    server_default=func.now(),
+    nullable=False
+)
+    photo = Column(String, nullable=True)
