@@ -14,9 +14,9 @@ class StudentCreate(StudentBase):
 
 class StudentUpdate(BaseModel):
     """Schema for updating a student."""
+    id: int 
     name: str | None = None
     is_active: bool | None = None
-
 
 class StudentResponse(StudentBase):
     id: int

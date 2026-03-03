@@ -4,28 +4,33 @@ from models.student import Student
 
 class StudentRepository:
     """Database access layer for Student."""
-
-    def create(self, db: Session, student: Student) -> Student:
-        """Add a new student to the database."""
-        db.add(student)
+#create ------------------------------------------------------------
+    def create_many(self, db: Session, students: list[Student]):
+        db.add_all(students)
         db.commit()
-        db.refresh(student)
-        return student
+        for student in students:
+            db.refresh(student)
+        return students
 
-    def get_by_id(self, db: Session, student_id: int) -> Student | None:
-        """Fetch a single student by primary key."""
-        return db.query(Student).filter(Student.id == student_id).first()
 
-    def get_by_email(self, db: Session, email: str) -> Student | None:
-        """Fetch a student by email address."""
-        return db.query(Student).filter(Student.email == email).first()
+#Read ---------------------------------------------------------
 
-    def get_all(self, db: Session) -> list[Student]:
-        """Fetch all students."""
+    def get_all(self, db: Session):
         return db.query(Student).all()
 
-    def update(self, db: Session, student: Student) -> Student:
+    def get_by_id(self, db: Session, student_id: int):
+        return db.query(Student).filter(Student.id == student_id).first()
+
+    def get_by_ids(self, db: Session, ids: list[int]):
+        return db.query(Student).filter(Student.id.in_(ids)).all()
+
+    def get_by_email(self, db: Session, email: str):
+        return db.query(Student).filter(Student.email == email).first()
+#update--------------------------------------------------------------
+
+    def update_many(self, db: Session, students: list[Student]):
         """Persist changes to an existing student."""
         db.commit()
-        db.refresh(student)
-        return student
+        for student in students:
+            db.refresh(student)
+        return students

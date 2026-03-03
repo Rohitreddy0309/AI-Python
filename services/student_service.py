@@ -6,53 +6,70 @@ from utils.exceptions import ConflictException, NotFoundException
 
 
 class StudentService:
-    """Business logic for Student."""
-
     def __init__(self) -> None:
         self.repository = StudentRepository()
 
-    def create_student(self, db: Session, data: StudentCreate) -> Student:
-        """Create a new student, rejecting duplicate emails."""
-        existing_student = self.repository.get_by_email(db, data.email)
-        if existing_student:
-            raise ConflictException("Email already exists")
+    #Create---------------------------------------------------
 
-        student = Student(
-            name=data.name,
-            email=data.email,
-        )
-        return self.repository.create(db, student)
+    def create_students(self, db: Session, data: list[StudentCreate]):
+        students = []
 
-    def get_student(self, db: Session, student_id: int) -> Student:
-        """Fetch a student by ID or raise 404."""
+        for item in data:
+            existing = self.repository.get_by_email(db, item.email)
+
+            if existing:
+                raise ConflictException("Email already exists")
+
+            student = Student(
+                name=item.name,
+                email=item.email,
+            )
+
+            students.append(student)
+
+        return self.repository.create_many(db, students)
+    
+    #Read-----------------------------------------------------
+    
+    def list_students(self, db: Session):
+        return self.repository.get_all(db)
+    
+    def get_student(self, db: Session, student_id: int):
         student = self.repository.get_by_id(db, student_id)
         if not student:
             raise NotFoundException("Student not found")
         return student
 
-    def list_students(self, db: Session) -> list[Student]:
-        """Return all students."""
-        return self.repository.get_all(db)
+    #Update---------------------------------------------------
 
-    def update_student(
-        self,
-        db: Session,
-        student_id: int,
-        data: StudentUpdate,
-    ) -> Student:
-        """Partially update a student's name or active status."""
-        student = self.get_student(db, student_id)
+    def update_students(self, db: Session, data: list[StudentUpdate]):
+        updated_students = []
 
-        if data.name is not None:
-            student.name = data.name
+        for item in data:
+            student = self.repository.get_by_id(db, item.id)
 
-        if data.is_active is not None:
-            student.is_active = data.is_active
+            if not student:
+                raise NotFoundException("Student not found")
 
-        return self.repository.update(db, student)
+            if item.name is not None:
+                student.name = item.name
 
-    def delete_student(self, db: Session, student_id: int) -> None:
-        """Soft delete — sets is_active to False."""
-        student = self.get_student(db, student_id)
-        student.is_active = False
-        self.repository.update(db, student)
+            if item.is_active is not None:
+                student.is_active = item.is_active
+
+            updated_students.append(student)
+
+        return self.repository.update_many(db, updated_students)
+
+#Delete---------------------------------------------------------------
+
+    def delete_students(self, db: Session, ids: list[int]):
+        students = self.repository.get_by_ids(db, ids)
+
+        if not students:
+            raise NotFoundException("Student not found")
+
+        for student in students:
+            student.is_active = False
+
+        self.repository.update_many(db, students)
