@@ -24,3 +24,12 @@ class PlantResponse(PlantBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+    
+class PlantBulkUpdate(BaseModel):
+    id: int
+    name: str 
+    watering_interval_days: int
+    sunlight: str
+    last_watered:date
+    
+        

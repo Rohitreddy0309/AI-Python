@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from core.database import get_db
 from services.plant_services import PlantService
-from schemas.schemas import PlantCreate, PlantResponse
+from schemas.schemas import PlantCreate, PlantResponse, PlantUpdate, PlantBulkUpdate
 
 router = APIRouter()
 service = PlantService()
@@ -16,6 +16,8 @@ def create_plant(plant: PlantCreate, db: Session = Depends(get_db)):
 @router.get("/", response_model=list[PlantResponse])
 def get_plants(db: Session = Depends(get_db)):
     return service.get_plants(db)
+
+
 
 
 @router.get("/{plant_id}", response_model=PlantResponse)
@@ -32,6 +34,11 @@ def update_plant(plant_id: int, plant: PlantCreate, db: Session = Depends(get_db
         return service.update_plant(db, plant_id, plant)
     except Exception:
         raise HTTPException(status_code=404, detail="Plant not found")
+    
+@router.delete("/bulk")
+def bulk_delete_plants(plants_ids: list[int], db: Session = Depends(get_db)):
+    service.bulk_delete_plants(db, plants_ids)
+    return {"message": "Plants deleted successfully"}     
 
 
 @router.delete("/{plant_id}")
@@ -41,3 +48,19 @@ def delete_plant(plant_id: int, db: Session = Depends(get_db)):
         return {"message": "Plant deleted successfully"}
     except Exception:
         raise HTTPException(status_code=404, detail="Plant not found")
+    
+@router.post("/bulk", response_model=list[PlantResponse])
+def create_plants_bulk(plants: list[PlantCreate], db: Session = Depends(get_db)):
+    return service.create_plants_bulk(db, plants)    
+
+@router.patch("/{plant_id}", response_model=PlantResponse)
+def patch_plant(plant_id: int,plant: PlantUpdate,db: Session = Depends(get_db)):
+    return service.patch_plant(db, plant_id, plant)
+
+@router.put("/bulk", response_model=list[PlantResponse])
+def update_plants_bulk(plants: list[PlantBulkUpdate],
+                       db: Session = Depends(get_db)):
+    return service.update_plants_bulk(db, plants)
+           
+
+          

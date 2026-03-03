@@ -23,3 +23,15 @@ class PlantRepository:
     def delete(self, db: Session, plant: Plant):
         db.delete(plant)
         db.commit()
+        
+    def create_bulk(self, db: Session, plants: list[Plant]) -> list[Plant]:
+        db.add_all(plants)
+        db.commit()
+        for plant in plants:
+            db.refresh(plant)
+        return plants    
+    def update(self, db: Session, plant: Plant):
+        db.commit()
+        db.refresh(plant)
+        return plant
+    
