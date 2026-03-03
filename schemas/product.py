@@ -14,3 +14,6 @@ class ProductResponse(ProductBase):
 
     class Config:
         from_attributes = True
+
+class ProductBulkUpdate(ProductBase):
+    id: int

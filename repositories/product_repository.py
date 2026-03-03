@@ -31,3 +31,54 @@ class ProductRepository:
     def delete(db: Session, db_product):
         db.delete(db_product)
         db.commit()
+
+
+    @staticmethod
+    def bulk_create(db: Session, products_data: list[dict]):
+        products = [Product(**data) for data in products_data]
+
+        db.add_all(products)
+        db.commit()
+
+        for product in products:
+            db.refresh(product)
+
+        return products
+    
+    @staticmethod
+    def get_by_ids(db: Session, ids: list[list]):
+        return db.query(Product).filter(Product.id.in_(ids)).all()
+
+    @staticmethod
+    def bulk_update(db: Session, products_data: list[dict]):
+        updated_products = []
+
+        for data in products_data:
+            product = db.query(Product).filter(Product.id == data["id"]).first()
+
+            if product:
+                for key, value in data.items():
+                    if key != "id":
+                        setattr(product, key, value)
+                        
+                updated_products.append(product)
+
+        db.commit()
+
+        for product in updated_products:
+            db.refresh(product)
+
+        return updated_products
+    
+    @staticmethod
+    def bulk_delete(db: Session, ids: list[int]):
+        products = db.query(Product).filter(Product.id.in_(ids)).all()
+
+        for product in products:
+            db.delete(product)
+
+        db.commit()
+
+        return {"deleted_count": len(products)}
+    
+        

@@ -2,10 +2,55 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from core.database import get_db
-from schemas.product import ProductCreate, ProductResponse
+from schemas.product import (
+    ProductCreate, 
+    ProductResponse,
+    ProductBulkUpdate
+)
+
 from services.product_service import ProductService
 
+from typing import List
+from fastapi import Query
+
 router = APIRouter(prefix="/products", tags=["Products"])
+
+
+
+# --------------------  BULK CREATE  ----------------
+@router.post("/bulk", response_model=list[ProductResponse])
+def bulk_create_products(
+    products: list[ProductCreate],
+    db: Session = Depends(get_db)
+):
+    return ProductService.bulk_create_products(db, products)
+
+
+# -----------------  BULK READ BY ID  -----------------
+@router.get("/bulk", response_model=list[ProductResponse])
+def get_products_bulk(
+    ids: List[int] = Query(...),
+    db: Session = Depends(get_db)
+):
+    return ProductService.get_products_by_ids(db, ids)
+
+
+# ------------------  BULK UPDATE  ---------------------
+@router.put("/bulk", response_model=list[ProductResponse])
+def bulk_update_products(
+    products: list[ProductBulkUpdate],
+    db: Session = Depends(get_db)
+):
+    return ProductService.bulk_update_products(db, products)
+
+
+# ------------------  BULK DELETE  ---------------------
+@router.delete("/bulk")
+def bulk_delete_products(
+    ids: list[int],
+    db: Session = Depends(get_db)
+):
+    return ProductService.bulk_delete_products(db, ids)
 
 
 # -------------------- READ ALL --------------------
@@ -68,3 +113,4 @@ def delete_product(
         raise HTTPException(status_code=404, detail="Product not found")
 
     return {"message": "Deleted successfully"}
+
