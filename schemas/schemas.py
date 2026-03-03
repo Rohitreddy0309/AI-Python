@@ -30,6 +30,9 @@ class PlantBulkUpdate(BaseModel):
     name: str 
     watering_interval_days: int
     sunlight: str
-    last_watered:date
+    last_watered: date
+    image_url: str | None = None
     
+    model_config = ConfigDict(from_attributes=True)
+             
         

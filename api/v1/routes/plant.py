@@ -3,7 +3,9 @@ from sqlalchemy.orm import Session
 from core.database import get_db
 from services.plant_services import PlantService
 from schemas.schemas import PlantCreate, PlantResponse, PlantUpdate, PlantBulkUpdate
-
+from fastapi import UploadFile, File, Depends, HTTPException
+import os
+import shutil
 router = APIRouter()
 service = PlantService()
 
@@ -62,5 +64,27 @@ def update_plants_bulk(plants: list[PlantBulkUpdate],
                        db: Session = Depends(get_db)):
     return service.update_plants_bulk(db, plants)
            
+@router.post("/{plant_id}/upload-image")
+async def upload_plant_image(plant_id: int, 
+                             file: UploadFile = File(...),
+                             db: Session =Depends(get_db)):
+    plant = service.get_plant(db, plant_id)
+    if not plant:
+        raise HTTPException(status_code=404, detail="plant not found")
+    
+    ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "video/mp4","video/mpeg","audio/mpeg", "application/pdf"]
+    if file.content_type not in ALLOWED_TYPES:
+        raise HTTPException(status_code=400, detail="Invalid file type")    
+    
+    file_path = os.path.join("uploads", file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    plant.image_url = file_path
+    db.commit()
+    db.refresh(plant)
+    
+    return {"message": "Image Uploaded successfully", "image_url": file_path}
 
+ 
+        
           
