@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, Text
 from core.database import Base
 
 class Product(Base):
@@ -9,3 +9,9 @@ class Product(Base):
     description = Column(String)
     price = Column(Float, nullable=False)
     quantity = Column(Integer, nullable=False)
+
+    file_name = Column(String, nullable=True)
+    file_path = Column(String, nullable=True)
+    file_status = Column(String, default="PENDING")
+    file_result = Column(Text, nullable=True)
+    

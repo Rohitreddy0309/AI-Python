@@ -81,4 +81,28 @@ class ProductRepository:
 
         return {"deleted_count": len(products)}
     
+    @staticmethod
+    def update_file_info(db: Session, product_id: int, file_name: str, file_path: str):
+        product = db.query(Product).filter(Product.id == product_id).first()
+        if product:
+            product.file_name = file_name
+            product.file_path = file_path
+            product.file_status = "PENDING"
+            db.commit()
+            db.refresh(product)
+        return product
+    
+    @staticmethod
+    def update_file_status(db: Session, product_id: int, status: str, result: str | None = None):
+        product = db.query(Product).filter(Product.id == product_id).first()
+        if product:
+            product.file_status = status
+            if result:
+                product.file_result = result
+            db.commit()
+            db.refresh(product)
+        return product
+    
+
+    
         

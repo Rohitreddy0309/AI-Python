@@ -4,7 +4,8 @@ from utils.exceptions import NotFoundException
 from schemas.product import ProductCreate
 from fastapi import HTTPException
 from schemas.product import ProductBulkUpdate
-
+import asyncio
+from core.database import SessionLocal
 
 class ProductService:
 
@@ -37,6 +38,8 @@ class ProductService:
             raise NotFoundException("Product not found")
         ProductRepository.delete(db, db_product)
 
+
+
     @staticmethod
     def bulk_create_products(db: Session, products: list[ProductCreate]):
 
@@ -61,3 +64,28 @@ class ProductService:
     @staticmethod
     def bulk_delete_products(db: Session, ids: list[int]):
         return ProductRepository.bulk_delete(db, ids)
+    
+
+    @staticmethod
+    async def process_product_file(product_id: int):
+        db = SessionLocal()
+
+        try:
+            ProductRepository.update_file_status(db, product_id, "PROCESSING")
+
+            await asyncio.sleep(5)  #It simulates parsing
+
+            result = "File parsed successfully"
+
+            ProductRepository.update_file_status(
+                db,
+                product_id,
+                "COMPLETED",
+                result
+            )
+        finally:
+            db.close()
+
+
+    
+
