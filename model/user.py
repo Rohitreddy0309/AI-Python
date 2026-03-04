@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from sqlalchemy.sql import func
 from core.database import Base
+from sqlalchemy import Text 
 
 
 class Plant(Base):
@@ -12,4 +13,6 @@ class Plant(Base):
     sunlight = Column(String, nullable=False)
     last_watered = Column(DateTime(timezone=True), nullable=False)
     image_url = Column(String, nullable=True)
-    
+    file_name = Column(String, nullable=True)
+    file_status = Column(String, nullable=True)
+    file_result = Column(Text, nullable=True)
