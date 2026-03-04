@@ -23,6 +23,9 @@ class StudentRepository:
 
     def get_by_ids(self, db: Session, ids: list[int]):
         return db.query(Student).filter(Student.id.in_(ids)).all()
+    
+    def get_all_active(self, db: Session):
+        return db.query(Student).filter(Student.is_active == True).all()
 
     def get_by_email(self, db: Session, email: str):
         return db.query(Student).filter(Student.email == email).first()

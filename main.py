@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from api.v1.router import api_router
 from core.database import Base, engine
+from models.student import Student 
 
 
 # Create database tables

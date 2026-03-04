@@ -1,8 +1,18 @@
-from fastapi import APIRouter, Depends, status
+from utils.exceptions import ConflictException, NotFoundException 
+from fastapi import APIRouter, Depends, status,UploadFile, File, Query, BackgroundTasks
+from models.student import Student
 from sqlalchemy.orm import Session
+from utils.rate_limiter import rate_limiter
 from core.database import get_db
 from typing import Union, List
-from fastapi import Query
+import uuid
+import os
+
+
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+
 from schemas.student import (
     StudentCreate,
     StudentResponse,
@@ -68,3 +78,36 @@ def delete_students(
 ):
     service.delete_students(db, students_ids)
     return {"message": "Students deleted successfully"}
+
+# -------------------- FILE UPLOAD --------------------
+
+@router.post("/{student_id}/upload", dependencies=[Depends(rate_limiter)])
+async def upload_file(
+    student_id: int,
+    file: UploadFile = File(...),
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    db: Session = Depends(get_db)
+):
+    """
+    Upload a file for a student and start background processing.
+    """
+
+    student = service.get_student(db, student_id)
+
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+
+    with open(file_path, "wb") as buffer:
+        buffer.write(await file.read())
+
+    student.file_name = file.filename
+    student.status = "PENDING"
+
+    db.commit()
+
+    background_tasks.add_task(
+        service.process_student_file,
+        db,
+        student.id
+    )
+
+    return student

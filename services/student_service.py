@@ -1,9 +1,11 @@
+import os
 from sqlalchemy.orm import Session
 from models.student import Student
 from repositories.student_repository import StudentRepository
 from schemas.student import StudentCreate, StudentUpdate
 from utils.exceptions import ConflictException, NotFoundException 
 
+UPLOAD_DIR = "uploads"
 
 class StudentService:
     def __init__(self) -> None:
@@ -32,7 +34,7 @@ class StudentService:
     #Read-----------------------------------------------------
     
     def list_students(self, db: Session):
-        return self.repository.get_all(db)
+        return self.repository.get_all_active(db)
     
     def get_student(self, db: Session, student_id: int):
         student = self.repository.get_by_id(db, student_id)
@@ -61,7 +63,7 @@ class StudentService:
 
         return self.repository.update_many(db, updated_students)
 
-#Delete---------------------------------------------------------------
+    #Delete---------------------------------------------------------------
 
     def delete_students(self, db: Session, ids: list[int]):
         students = self.repository.get_by_ids(db, ids)
@@ -73,3 +75,35 @@ class StudentService:
             student.is_active = False
 
         self.repository.update_many(db, students)
+
+    # File Processing ---------------------------------------------------
+
+    def process_student_file(self, db: Session, student_id: int):
+        """
+        Background task to process uploaded student file.
+        """
+
+        student = self.repository.get_by_id(db, student_id)
+
+        if not student:
+            return
+
+        student.status = "PROCESSING"
+        self.repository.update_many(db, [student])   
+
+        file_path = os.path.join(UPLOAD_DIR, student.file_name)
+
+        try:
+            with open(file_path, "rb") as f:
+                content = f.read()
+
+            file_size = len(content)
+
+            student.status = "COMPLETED"
+            student.result = "Processing completed"
+
+        except Exception as e:
+            student.status = "FAILED"
+            student.result = str(e)
+
+        self.repository.update_many(db, [student])   
