@@ -17,6 +17,7 @@ import os
 import aiofiles
 from fastapi import UploadFile, File, BackgroundTasks
 from repositories.product_repository import ProductRepository
+from utils.rate_limiter import rate_limit
 
 
 router = APIRouter(prefix="/products", tags=["Products"])
@@ -24,7 +25,11 @@ router = APIRouter(prefix="/products", tags=["Products"])
 
 
 # ------------------- Single/Bulk CREATE  ----------------
-@router.post("/", summary="Create Products")
+@router.post(
+    "/",
+    summary="Create Products",
+    dependencies=[Depends(rate_limit)]
+)
 def bulk_create_products(
     products: Union[ProductCreate, List[ProductCreate]],
     db: Session = Depends(get_db)
@@ -118,7 +123,11 @@ def delete_product(
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@router.post("/{product_id}/upload", summary="Upload file product")
+@router.post(
+        "/{product_id}/upload",
+        summary="Upload file product",
+        dependencies=[Depends(rate_limit)]
+        )
 async def upload_product_file(
     product_id: int,
     background_tasks: BackgroundTasks,
