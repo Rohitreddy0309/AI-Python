@@ -2,7 +2,7 @@ from fastapi import Depends, APIRouter, UploadFile, File, Form, Request, Backgro
 from sqlalchemy.orm import Session
 from core.database import get_db
 from services import user_service
-from Schemas.user import UserResponse, UsersCreate, UsersUpdate, UsersBulkUpdate
+from Schemas.user import UserResponse, UsersCreate, UsersBulkUpdate
 from utils.rate_limiter import rate_limiter
 
 
