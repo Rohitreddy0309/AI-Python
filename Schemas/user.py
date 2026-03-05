@@ -22,16 +22,17 @@ class UsersUpdate(BaseModel):
     is_active: Optional[bool] = None
     photo: Optional[str] = None
 
-class UsersBulkUpdate(BaseModel): 
-    name: Optional[str] = None 
-    email: Optional[str] = None 
+
+class UsersBulkUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
     department: Optional[str] = None
 
 
 class UserResponse(UsersBase):
     id: int
     created_date: Optional[datetime] = None
-    photo: str = None
+    photo: Optional[str] = None
 
     class Config:
         from_attributes = True
