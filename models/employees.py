@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Enum
+from sqlalchemy import Column, Integer, String, Enum, UniqueConstraint
 from core.db import Base
-
+from pydantic import EmailStr
+from sqlalchemy.exc import IntegrityError
 class Employee(Base):
     __tablename__ = "employees"
 
@@ -11,3 +12,7 @@ class Employee(Base):
     email = Column(String, unique=True, nullable=False)
     blood_group = Column(Enum('A+','A-','B+','B-','AB+','AB-','O+','O-', name="blood_group_enum"))
     PH_number = Column(String, unique=True, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint("email", name="uq_employee_email"),
+    )

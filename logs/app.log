@@ -222,3 +222,37 @@ LINE 1: ...mail, blood_group, "PH_number") VALUES ('prasad', 'c++', 'te...
 2026-03-02 17:50:57,629 - app_logger - DEBUG - Creating new employee with data: {'name': 'prasad', 'department': 'Python', 'project': 'testing', 'email': 'prasad@example.com', 'blood_group': 'A+', 'PH_number': '8985244889'}
 2026-03-02 17:50:57,651 - app_logger - INFO - Employee created successfully: prasad
 2026-03-02 17:50:57,652 - app_logger - INFO - Employee created successfully: prasad
+2026-03-02 18:22:54,159 - app_logger - INFO - Received request to create employee with data: name='prasad' department='Python' project='string' email='prasad@example.com' blood_group='A+' PH_number='8897979792'
+2026-03-02 18:22:54,161 - app_logger - DEBUG - Creating new employee with data: {'name': 'prasad', 'department': 'Python', 'project': 'string', 'email': 'prasad@example.com', 'blood_group': 'A+', 'PH_number': '8897979792'}
+2026-03-02 18:22:54,176 - app_logger - WARNING - Email already exists: prasad@example.com
+2026-03-02 18:22:54,179 - app_logger - ERROR - Unhandled exception: name 'IntegrityError' is not defined
+2026-03-02 18:23:20,121 - app_logger - INFO - Received request to create employee with data: name='prasad' department='Python' project='string' email='prasad@gmail.com' blood_group='A+' PH_number='8897979792'
+2026-03-02 18:23:20,122 - app_logger - DEBUG - Creating new employee with data: {'name': 'prasad', 'department': 'Python', 'project': 'string', 'email': 'prasad@gmail.com', 'blood_group': 'A+', 'PH_number': '8897979792'}
+2026-03-02 18:23:20,143 - app_logger - INFO - Employee created successfully: prasad
+2026-03-02 18:23:20,144 - app_logger - INFO - Employee created successfully: prasad
+2026-03-02 18:23:38,527 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 18:23:38,527 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 18:23:38,530 - app_logger - INFO - Retrieved 6 employees from DB
+2026-03-02 18:23:38,530 - app_logger - INFO - Returning 6 employees
+2026-03-02 18:24:14,187 - app_logger - INFO - Received request to delete employee with ID: 12
+2026-03-02 18:24:14,188 - app_logger - DEBUG - Attempting to delete employee with ID: 12
+2026-03-02 18:24:14,188 - app_logger - DEBUG - Fetching employee with ID: 12
+2026-03-02 18:24:14,207 - app_logger - INFO - Employee found: prasad
+2026-03-02 18:24:14,214 - app_logger - INFO - Employee with ID: 12 deleted successfully
+2026-03-02 18:24:14,214 - app_logger - INFO - Employee with ID: 12 deleted successfully
+2026-03-02 18:24:29,248 - app_logger - INFO - Received request to delete employee with ID: 19
+2026-03-02 18:24:29,249 - app_logger - DEBUG - Attempting to delete employee with ID: 19
+2026-03-02 18:24:29,249 - app_logger - DEBUG - Fetching employee with ID: 19
+2026-03-02 18:24:29,250 - app_logger - WARNING - No employee found with ID: 19
+2026-03-02 18:24:29,251 - app_logger - CRITICAL - Employee with ID: 19 not found for deletion
+2026-03-02 18:24:29,251 - app_logger - WARNING - Employee with ID: 19 not found for deletion
+2026-03-02 18:24:29,466 - app_logger - INFO - Received request to delete employee with ID: 19
+2026-03-02 18:24:29,467 - app_logger - DEBUG - Attempting to delete employee with ID: 19
+2026-03-02 18:24:29,467 - app_logger - DEBUG - Fetching employee with ID: 19
+2026-03-02 18:24:29,468 - app_logger - WARNING - No employee found with ID: 19
+2026-03-02 18:24:29,469 - app_logger - CRITICAL - Employee with ID: 19 not found for deletion
+2026-03-02 18:24:29,469 - app_logger - WARNING - Employee with ID: 19 not found for deletion
+2026-03-02 18:24:58,522 - app_logger - INFO - Received request to fetch all employees
+2026-03-02 18:24:58,522 - app_logger - DEBUG - Fetching all employees from the database
+2026-03-02 18:24:58,525 - app_logger - INFO - Retrieved 5 employees from DB
+2026-03-02 18:24:58,525 - app_logger - INFO - Returning 5 employees

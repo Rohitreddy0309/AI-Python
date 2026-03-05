@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from core.db import get_db,Base, engine
 from schemas.emp_schemas import EmployeeCreate, EmployeeResponse, EmployeeUpdate
-from repository.employees_repo import Employee
+from repository import employees_repo
 from service import emp_service
 from core.config import logger
 

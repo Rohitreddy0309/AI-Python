@@ -1,4 +1,4 @@
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 from models import employees
 from schemas.emp_schemas import EmployeeCreate, EmployeeUpdate
@@ -37,12 +37,23 @@ def get_employee_by_id(db: Session, employee_id: int):
 def create_employee_db(db: Session, employee_data: dict):
     logger.debug(f"Creating new employee with data: {employee_data}")
     try:
+        existing_emp = db.query(Employee).filter(Employee.email == employee_data["email"]).first()
+        if existing_emp:
+            logger.warning(f"Email already exists: {employee_data['email']}")
+            raise DuplicateEntryException("Employee", "email")
+
         new_employee = Employee(name=employee_data['name'], department=employee_data['department'], project=employee_data['project'], email=employee_data['email'], blood_group=employee_data['blood_group'], PH_number=employee_data['PH_number'])
         db.add(new_employee)
         db.commit()
         db.refresh(new_employee)
         logger.info(f"Employee created successfully: {new_employee.name}")
         return new_employee
+    except IntegrityError:
+        db.rollback()
+        logger.warning(f"Duplicate employee creation attempt for email: {employee_data.get('email')}")
+        raise DuplicateEntryException("Employee", "email")
+    
+    
     except SQLAlchemyError as e:
         logger.error(f"Error creating employee: {e}")
         db.rollback()
