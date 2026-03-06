@@ -4,3 +4,7 @@ sqlalchemy
 psycopg2-binary
 pydantic
 passlib[bcrypt]
+pydantic-settings
+pytest
+httpx
+pytest-asyncio
