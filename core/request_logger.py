@@ -1,0 +1,66 @@
+import time
+import uuid
+from fastapi import Request
+from starlette.middleware.base import BaseHTTPMiddleware
+from core.database import SessionLocal
+from repositories.request_log_repo import create_log
+
+
+status_messages = {
+    200: "Success",
+    201: "Created",
+    400: "Bad Request",
+    404: "User Not Found",
+    500: "Internal Server Error"
+}
+
+
+class RequestLoggerMiddleware(BaseHTTPMiddleware):
+
+    async def dispatch(self, request: Request, call_next):
+
+        start_time = time.time()
+        request_id = str(uuid.uuid4())
+
+        ip_address = request.client.host
+       
+        endpoint = request.url.path
+
+        user_identifier = None
+
+        # Case 1: GET all users
+        if endpoint.endswith("/users"):
+            user_identifier = "admin"
+
+        else:
+            # Extract numeric user id
+            parts = endpoint.split("/")
+
+            for part in parts:
+                if part.isdigit():
+                    user_identifier = part
+                    break
+
+        response = await call_next(request)
+
+        end_time = time.time()
+        response_time = end_time - start_time
+
+        status_message = status_messages.get(response.status_code, "Unknown")
+
+        db = SessionLocal()
+
+        try:
+            create_log(db, {
+    "user_id": user_identifier,
+    "request_id": request_id,
+    "endpoint": endpoint,
+    "ip_address": ip_address,
+    "status_code": response.status_code,
+    "status_message": status_message,
+    "response_time": response_time
+}) 
+        finally:
+            db.close()
+
+        return response

@@ -7,16 +7,13 @@ from utils.rate_limiter import rate_limiter
 
 
 router = APIRouter(prefix="/users", tags=["Users"])
-
 @router.get("/api/v1/users", response_model=list[UserResponse])
 def get_all_users(request: Request, db: Session = Depends(get_db)):
     return user_service.list_all_users(db, request)
 
-
 @router.get("/api/v1/users/get/{id}", response_model=UserResponse)
 def get_user_by_id(id: int, request: Request, db: Session = Depends(get_db)):
     return user_service.get_by_id(db, id, request)
-
 
 @router.post("/add", response_model=UserResponse)
 def add_user(
