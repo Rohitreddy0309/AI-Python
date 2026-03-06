@@ -1,12 +1,13 @@
-from utils.exceptions import ConflictException, NotFoundException 
-from fastapi import APIRouter, Depends, status,UploadFile, File, Query, BackgroundTasks
+import os
+import uuid
+from typing import Union, List
+from core.database import get_db
 from models.student import Student
 from sqlalchemy.orm import Session
 from utils.rate_limiter import rate_limiter
-from core.database import get_db
-from typing import Union, List
-import uuid
-import os
+from api.v1.dependencies import get_student_service
+from utils.exceptions import ConflictException, NotFoundException 
+from fastapi import APIRouter, Depends, status,UploadFile, File, Query, BackgroundTasks
 
 
 UPLOAD_DIR = "uploads"
@@ -21,7 +22,7 @@ from schemas.student import (
 from services.student_service import StudentService
 
 router = APIRouter()
-service = StudentService()
+
 
 
 # -------------------- CREATE --------------------
@@ -33,11 +34,11 @@ service = StudentService()
 )
 def create_student(
     data: Union[StudentCreate, List[StudentCreate]],
-    db: Session = Depends(get_db),
+    service: StudentService = Depends(get_student_service)
 ):
     if isinstance(data,list):
-        return service.create_students(db, data)
-    return service.create_students(db,[data])
+        return service.create_students(data)
+    return service.create_students([data])
 
 
 
@@ -49,22 +50,27 @@ def create_student(
 )
 def update_students(
     data: Union[StudentUpdate, List[StudentUpdate]],
-    db: Session = Depends(get_db),
+    service: StudentService= Depends(get_student_service)
 ):
     if isinstance(data, list):
-        return service.update_students(db, data)
-    return service.update_students(db, [data])
+        return service.update_students(data)
+    return service.update_students([data])
 
 # -------------------- READ --------------------
 
 @router.get("", response_model=List[StudentResponse])
-def list_students(db: Session = Depends(get_db)):
-    return service.list_students(db)
+def list_students(db: Session = Depends(get_db),
+    service: StudentService = Depends(get_student_service)
+):
+    return service.list_students()
 
 
 @router.get("/{student_id}", response_model=StudentResponse)
-def get_student(student_id: int, db: Session = Depends(get_db)):
-    return service.get_student(db, student_id)
+def get_student(
+    student_id: int,
+    service: StudentService = Depends(get_student_service)
+):
+    return service.get_student(student_id)
   
 
 
@@ -74,9 +80,9 @@ def get_student(student_id: int, db: Session = Depends(get_db)):
 @router.delete("")
 def delete_students(
     students_ids: List[int] = Query(...),
-    db: Session = Depends(get_db),
+    service: StudentService = Depends(get_student_service)
 ):
-    service.delete_students(db, students_ids)
+    service.delete_students(students_ids)
     return {"message": "Students deleted successfully"}
 
 # -------------------- FILE UPLOAD --------------------
@@ -86,32 +92,21 @@ async def upload_file(
     student_id: int,
     file: UploadFile = File(...),
     background_tasks: BackgroundTasks = BackgroundTasks(),
-    db: Session = Depends(get_db)
+    service: StudentService = Depends(get_student_service)
 ):
-    """
-    Upload a file for a student and start background processing.
-    """
-
-    student = service.get_student(db, student_id)
 
     file_path = os.path.join(UPLOAD_DIR, file.filename)
 
     with open(file_path, "wb") as buffer:
         buffer.write(await file.read())
 
-    student.file_name = file.filename
-    student.status = "PENDING"
-
-    db.commit()
+    student = service.get_student(student_id)
 
     background_tasks.add_task(
         service.process_student_file,
-        db,
         student.id
     )
 
     return student
-
-
 
 

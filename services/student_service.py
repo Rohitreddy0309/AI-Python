@@ -1,23 +1,23 @@
 import os
-from sqlalchemy.orm import Session
 from models.student import Student
 from repositories.student_repository import StudentRepository
 from schemas.student import StudentCreate, StudentUpdate
-from utils.exceptions import ConflictException, NotFoundException 
+from utils.exceptions import ConflictException, NotFoundException
 
 UPLOAD_DIR = "uploads"
 
+
 class StudentService:
-    def __init__(self) -> None:
-        self.repository = StudentRepository()
+    def __init__(self, repository: StudentRepository):
+        self.repository = repository
 
-    #Create---------------------------------------------------
+# ---------------- CREATE ----------------
 
-    def create_students(self, db: Session, data: list[StudentCreate]):
+    def create_students(self, data: list[StudentCreate]):
         students = []
 
         for item in data:
-            existing = self.repository.get_by_email(db, item.email)
+            existing = self.repository.get_by_email(item.email)
 
             if existing:
                 raise ConflictException("Email already exists")
@@ -29,26 +29,28 @@ class StudentService:
 
             students.append(student)
 
-        return self.repository.create_many(db, students)
-    
-    #Read-----------------------------------------------------
-    
-    def list_students(self, db: Session):
-        return self.repository.get_all_active(db)
-    
-    def get_student(self, db: Session, student_id: int):
-        student = self.repository.get_by_id(db, student_id)
+        return self.repository.create_many(students)
+
+# ---------------- READ ----------------
+
+    def list_students(self):
+        return self.repository.get_all_active()
+
+    def get_student(self, student_id: int):
+        student = self.repository.get_by_id(student_id)
+
         if not student:
             raise NotFoundException("Student not found")
+
         return student
 
-    #Update---------------------------------------------------
+# ---------------- UPDATE ----------------
 
-    def update_students(self, db: Session, data: list[StudentUpdate]):
+    def update_students(self, data: list[StudentUpdate]):
         updated_students = []
 
         for item in data:
-            student = self.repository.get_by_id(db, item.id)
+            student = self.repository.get_by_id(item.id)
 
             if not student:
                 raise NotFoundException("Student not found")
@@ -61,12 +63,12 @@ class StudentService:
 
             updated_students.append(student)
 
-        return self.repository.update_many(db, updated_students)
+        return self.repository.update_many(updated_students)
 
-    #Delete---------------------------------------------------------------
+# ---------------- DELETE ----------------
 
-    def delete_students(self, db: Session, ids: list[int]):
-        students = self.repository.get_by_ids(db, ids)
+    def delete_students(self, ids: list[int]):
+        students = self.repository.get_by_ids(ids)
 
         if not students:
             raise NotFoundException("Student not found")
@@ -74,30 +76,25 @@ class StudentService:
         for student in students:
             student.is_active = False
 
-        self.repository.update_many(db, students)
+        self.repository.update_many(students)
 
-    # File Processing ---------------------------------------------------
+# ---------------- FILE PROCESSING ----------------
 
-    def process_student_file(self, db: Session, student_id: int):
-        """
-        Background task to process uploaded student file.
-        """
+    def process_student_file(self, student_id: int):
 
-        student = self.repository.get_by_id(db, student_id)
+        student = self.repository.get_by_id(student_id)
 
         if not student:
             return
 
         student.status = "PROCESSING"
-        self.repository.update_many(db, [student])   
+        self.repository.update_many([student])
 
         file_path = os.path.join(UPLOAD_DIR, student.file_name)
 
         try:
             with open(file_path, "rb") as f:
                 content = f.read()
-
-            file_size = len(content)
 
             student.status = "COMPLETED"
             student.result = "Processing completed"
@@ -106,4 +103,4 @@ class StudentService:
             student.status = "FAILED"
             student.result = str(e)
 
-        self.repository.update_many(db, [student])   
+        self.repository.update_many([student])

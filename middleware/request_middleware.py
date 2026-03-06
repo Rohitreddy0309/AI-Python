@@ -29,9 +29,14 @@ class RequestMiddleware(BaseHTTPMiddleware):
         status_map = {
             200: "Success",
             201: "Created",
+            307: "Temporary Redirect",
+            401: "Unauthorized",
+            403: "Forbidden",
             404: "Not Found",
+            405: "Method Not Allowed",
             409: "Conflict",
             422: "Invalid Input",
+            429: "Rate Limit Exceeded",
             500: "Server Error"
         }
         status_text = status_map.get(response.status_code, "Unknown")

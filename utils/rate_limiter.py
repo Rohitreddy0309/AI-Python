@@ -1,5 +1,6 @@
 import time
-from fastapi import Request, HTTPException
+from fastapi import Request
+from core.exceptions.custom_exceptions import RateLimitException
 
 
 RATE_LIMIT = 10         #requests allowed
@@ -23,9 +24,7 @@ def rate_limiter(request: Request):
     ]
 
     if len(request_logs[ip]) >= RATE_LIMIT:
-        raise HTTPException(
-            status_code=429,
-            detail = "Rate limit exceeded"
-        )
+        raise RateLimitException()
+    
     
     request_logs[ip].append(current_time)

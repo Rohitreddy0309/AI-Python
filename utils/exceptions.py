@@ -1,17 +1,20 @@
-from fastapi import HTTPException, status
+from core.exceptions.base import BaseAppException
+from fastapi import status
 
 
-class ConflictException(HTTPException):
-    def __init__(self, detail: str):
+class ConflictException(BaseAppException):
+    def __init__(self, message: str):
         super().__init__(
+            message=message,
             status_code=status.HTTP_409_CONFLICT,
-            detail=detail
+            
         )
 
 
-class NotFoundException(HTTPException):
-    def __init__(self, detail: str):
+class NotFoundException(BaseAppException):
+    def __init__(self, message: str):
         super().__init__(
+            message=message,
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=detail
+            
         )
