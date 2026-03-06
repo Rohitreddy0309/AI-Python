@@ -12,7 +12,6 @@ class Plant(Base):
     watering_interval_days = Column(Integer, nullable=False)
     sunlight = Column(String, nullable=False)
     last_watered = Column(DateTime(timezone=True), nullable=False)
-    image_url = Column(String, nullable=True)
-    file_name = Column(String, nullable=True)
+    file_path = Column(String, nullable=True)
     file_status = Column(String, nullable=True)
     file_result = Column(Text, nullable=True)

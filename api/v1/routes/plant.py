@@ -1,130 +1,101 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks
-from sqlalchemy.orm import Session
-from core.database import get_db, SessionLocal
-from model.user import Plant
+from fastapi import APIRouter, Depends, UploadFile, File, BackgroundTasks
+from dependencies.plant_dependencies import get_plant_service
 from services.plant_services import PlantService
 from schemas.schemas import PlantCreate, PlantResponse, PlantUpdate, PlantBulkUpdate
+from utils.rate_limiter import rate_limiter
 
 import aiofiles
 import asyncio
 import os
-import shutil
 
 router = APIRouter()
-service = PlantService()
 
 UPLOAD_FOLDER = "uploads"
 
 
-
 @router.post("/", response_model=PlantResponse)
-def create_plant(plant: PlantCreate, db: Session = Depends(get_db)):
-    return service.create_plant(db, plant)
-
+def create_plant(
+    plant: PlantCreate,
+    service: PlantService = Depends(get_plant_service),
+    _: None = Depends(rate_limiter)
+):
+    return service.create_plant(plant)
 
 
 @router.get("/", response_model=list[PlantResponse])
-def get_plants(db: Session = Depends(get_db)):
-    return service.get_plants(db)
-
+def get_plants(service: PlantService = Depends(get_plant_service)):
+    return service.get_plants()
 
 
 @router.get("/{plant_id}", response_model=PlantResponse)
-def get_plant(plant_id: int, db: Session = Depends(get_db)):
-    try:
-        return service.get_plant(db, plant_id)
-    except Exception:
-        raise HTTPException(status_code=404, detail="Plant not found")
-
+def get_plant(
+    plant_id: int,
+    service: PlantService = Depends(get_plant_service)
+):
+    return service.get_plant(plant_id)
 
 
 @router.put("/{plant_id}", response_model=PlantResponse)
-def update_plant(plant_id: int, plant: PlantCreate, db: Session = Depends(get_db)):
-    try:
-        return service.update_plant(db, plant_id, plant)
-    except Exception:
-        raise HTTPException(status_code=404, detail="Plant not found")
-
+def update_plant(
+    plant_id: int,
+    plant: PlantCreate,
+    service: PlantService = Depends(get_plant_service)
+):
+    return service.update_plant(plant_id, plant)
 
 
 @router.delete("/bulk")
-def bulk_delete_plants(plants_ids: list[int], db: Session = Depends(get_db)):
-    service.bulk_delete_plants(db, plants_ids)
+def bulk_delete_plants(
+    plants_ids: list[int],
+    service: PlantService = Depends(get_plant_service)
+):
+    service.bulk_delete_plants(plants_ids)
     return {"message": "Plants deleted successfully"}
 
 
-
 @router.delete("/{plant_id}")
-def delete_plant(plant_id: int, db: Session = Depends(get_db)):
-    try:
-        service.delete_plant(db, plant_id)
-        return {"message": "Plant deleted successfully"}
-    except Exception:
-        raise HTTPException(status_code=404, detail="Plant not found")
-
+def delete_plant(
+    plant_id: int,
+    service: PlantService = Depends(get_plant_service)
+):
+    service.delete_plant(plant_id)
+    return {"message": "Plant deleted successfully"}
 
 
 @router.post("/bulk", response_model=list[PlantResponse])
-def create_plants_bulk(plants: list[PlantCreate], db: Session = Depends(get_db)):
-    return service.create_plants_bulk(db, plants)
-
+def create_plants_bulk(
+    plants: list[PlantCreate],
+    service: PlantService = Depends(get_plant_service)
+):
+    return service.create_plants_bulk(plants)
 
 
 @router.patch("/{plant_id}", response_model=PlantResponse)
-def patch_plant(plant_id: int, plant: PlantUpdate, db: Session = Depends(get_db)):
-    return service.patch_plant(db, plant_id, plant)
-
+def patch_plant(
+    plant_id: int,
+    plant: PlantUpdate,
+    service: PlantService = Depends(get_plant_service)
+):
+    return service.patch_plant(plant_id, plant)
 
 
 @router.put("/bulk", response_model=list[PlantResponse])
-def update_plants_bulk(plants: list[PlantBulkUpdate], db: Session = Depends(get_db)):
-    return service.update_plants_bulk(db, plants)
-
-
-
-@router.post("/{plant_id}/upload-image")
-async def upload_plant_image(
-    plant_id: int,
-    file: UploadFile = File(...),
-    db: Session = Depends(get_db)
+def update_plants_bulk(
+    plants: list[PlantBulkUpdate],
+    service: PlantService = Depends(get_plant_service)
 ):
-    plant = service.get_plant(db, plant_id)
-
-    if not plant:
-        raise HTTPException(status_code=404, detail="Plant not found")
-
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    plant.image_url = file_path
-
-    db.commit()
-    db.refresh(plant)
-
-    return {
-        "message": "Image uploaded successfully",
-        "image_url": file_path
-    }
+    return service.bulk_update_plants(plants)
 
 
 @router.post("/upload/{plant_id}")
 async def upload_file(
     plant_id: int,
     file: UploadFile = File(...),
-    background_tasks: BackgroundTasks = BackgroundTasks()
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    service: PlantService = Depends(get_plant_service)
 ):
 
-    db = SessionLocal()
-
-    plant = db.query(Plant).filter(Plant.id == plant_id).first()
-
-    if not plant:
-        db.close()
-        raise HTTPException(status_code=404, detail="Plant not found")
+    plant = service.get_plant(plant_id)
 
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -134,16 +105,12 @@ async def upload_file(
         content = await file.read()
         await out_file.write(content)
 
-    # update DB immediately
-    plant.file_name = file.filename
+    plant.file_path = file_path
     plant.file_status = "PENDING"
 
-    db.commit()
+    service.db.commit()
 
-    # start background processing
     background_tasks.add_task(process_file, file_path, plant_id)
-
-    db.close()
 
     return {
         "message": "File uploaded successfully",
@@ -152,8 +119,6 @@ async def upload_file(
 
 
 async def process_file(file_path: str, plant_id: int):
-
-    db = SessionLocal()
 
     print("Processing started...")
 
@@ -164,13 +129,6 @@ async def process_file(file_path: str, plant_id: int):
 
     file_size = len(content)
 
-    plant = db.query(Plant).filter(Plant.id == plant_id).first()
+    result = f"File processed successfully. Size: {file_size} bytes"
 
-    if plant:
-        plant.file_status = "COMPLETED"
-        plant.file_result = f"File processed successfully. Size: {file_size} bytes"
-        db.commit()
-
-    db.close()
-
-    print("Processing finished")
+    print("Processing finished:", result)
