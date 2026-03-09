@@ -1,19 +1,31 @@
+"""
+Student service layer.
+
+Handles business logic related to students such as
+creation, updates, deletion, and file processing.
+"""
+
 import os
+
 from models.student import Student
 from repositories.student_repository import StudentRepository
 from schemas.student import StudentCreate, StudentUpdate
-from utils.exceptions import ConflictException, NotFoundException
+from core.exceptions.custom_exception import ConflictException, NotFoundException
 
 UPLOAD_DIR = "uploads"
 
 
 class StudentService:
+    """Business logic layer for managing students."""
+
     def __init__(self, repository: StudentRepository):
+        """Initialize service with student repository."""
         self.repository = repository
 
-# ---------------- CREATE ----------------
+    # ---------------- CREATE ----------------
 
     def create_students(self, data: list[StudentCreate]):
+        """Create multiple students after checking for duplicate emails."""
         students = []
 
         for item in data:
@@ -31,12 +43,14 @@ class StudentService:
 
         return self.repository.create_many(students)
 
-# ---------------- READ ----------------
+    # ---------------- READ ----------------
 
     def list_students(self):
+        """Return all active students."""
         return self.repository.get_all_active()
 
     def get_student(self, student_id: int):
+        """Retrieve a student by ID."""
         student = self.repository.get_by_id(student_id)
 
         if not student:
@@ -44,9 +58,10 @@ class StudentService:
 
         return student
 
-# ---------------- UPDATE ----------------
+    # ---------------- UPDATE ----------------
 
     def update_students(self, data: list[StudentUpdate]):
+        """Update multiple student records."""
         updated_students = []
 
         for item in data:
@@ -65,9 +80,10 @@ class StudentService:
 
         return self.repository.update_many(updated_students)
 
-# ---------------- DELETE ----------------
+    # ---------------- DELETE ----------------
 
     def delete_students(self, ids: list[int]):
+        """Soft delete students by marking them inactive."""
         students = self.repository.get_by_ids(ids)
 
         if not students:
@@ -78,29 +94,57 @@ class StudentService:
 
         self.repository.update_many(students)
 
-# ---------------- FILE PROCESSING ----------------
+    # ---------------- SAVE FILE NAME ----------------
+
+    def save_uploaded_file(self, student_id: int, file_name: str):
+        """Save uploaded file name and update student processing status."""
+        student = self.repository.get_by_id(student_id)
+
+        if not student:
+            raise NotFoundException("Student not found")
+
+        student.file_name = file_name
+        student.status = "PENDING"
+
+        return self.repository.update_many([student])
+
+    # ---------------- FILE PROCESSING ----------------
 
     def process_student_file(self, student_id: int):
-
+        """Process uploaded student file in background."""
         student = self.repository.get_by_id(student_id)
 
         if not student:
             return
 
+        # Start processing
         student.status = "PROCESSING"
         self.repository.update_many([student])
 
+        if not student.file_name:
+            student.status = "FAILED"
+            student.result = "File not found"
+            self.repository.update_many([student])
+            return
+
         file_path = os.path.join(UPLOAD_DIR, student.file_name)
 
+        # Check if file exists
+        if not os.path.exists(file_path):
+            student.status = "FAILED"
+            student.result = "File not found"
+            self.repository.update_many([student])
+            return
+
         try:
-            with open(file_path, "rb") as f:
-                content = f.read()
+            with open(file_path, "rb") as file:
+                file.read()
 
             student.status = "COMPLETED"
             student.result = "Processing completed"
 
-        except Exception as e:
+        except OSError as exc:
             student.status = "FAILED"
-            student.result = str(e)
+            student.result = str(exc)
 
         self.repository.update_many([student])

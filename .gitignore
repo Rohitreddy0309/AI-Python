@@ -1,33 +1,164 @@
-# Byte-compiled / optimized / DLL files
+# OS generated files
+
+.DS_Store
+
+Thumbs.db
+
+desktop.ini
+
+$RECYCLE.BIN/
+
+.Spotlight-V100
+
+.Trashes
+ 
+# Logs
+
+*.log
+
+logs/
+
+npm-debug.log*
+
+yarn-debug.log*
+
+yarn-error.log*
+
+pnpm-debug.log*
+ 
+# Environment variables
+
+.env
+
+.env.*
+
+!.env.example
+ 
+# Dependency directories
+
+node_modules/
+
+vendor/
+
+packages/
+ 
+# Build / dist
+
+dist/
+
+build/
+
+out/
+
+target/
+ 
+# Coverage
+
+coverage/
+
+*.lcov
+ 
+# Cache
+
+.cache/
+
+.tmp/
+
+temp/
+
+*.tmp
+ 
+# IDE / Editors
+
+.vscode/
+
+.idea/
+
+*.suo
+
+*.ntvs*
+
+*.njsproj
+
+*.sln
+
+*.swp
+
+*.swo
+ 
+# Python
 
 __pycache__/
 
 *.py[cod]
 
-*$py.class
+*.pyo
 
-*.pyc
- 
-# Virtual environments
+*.pyd
+
+.Python
 
 venv/
 
-.env
+.env/
 
-
-*.env
+.venv/
  
-# Distribution / packaging
+# Java
+
+*.class
+
+*.jar
+
+*.war
+
+*.ear
+
+.gradle/
 
 build/
-
-dist/
-
-*.egg-info/
  
-# IDE files
+# C / C++
 
-.vscode/
+*.o
 
-.idea/
+*.obj
+
+*.exe
+
+*.out
+
+*.a
+
+*.so
+ 
+# Rust
+
+target/
+
+Cargo.lock
+ 
+# Go
+
+bin/
+
+pkg/
+ 
+# Mac
+
+.AppleDouble
+
+.LSOverride
+ 
+# Temporary files
+
+*.bak
+
+*.backup
+
+*.old
+
+*.orig
+
+*.rej
  

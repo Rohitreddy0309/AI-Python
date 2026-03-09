@@ -1,8 +1,16 @@
+"""
+Student model.
+
+Defines the SQLAlchemy database table for storing student information.
+"""
+
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from sqlalchemy.sql import func
-from core.database import Base  
 
-class Student(Base):
+from core.database import Base
+
+
+class Student(Base):  # pylint: disable=too-few-public-methods
     """Student database model."""
 
     __tablename__ = "students"
@@ -10,9 +18,9 @@ class Student(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False, index=True)
-    
+
     is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    created_at = Column(DateTime(timezone=True), server_default=func.now())  # pylint: disable=not-callable
 
     file_name = Column(String, nullable=True)
     status = Column(String, default="PENDING")
