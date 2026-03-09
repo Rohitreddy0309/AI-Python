@@ -1,3 +1,10 @@
+"""
+API Router configuration.
+
+This module registers all version 1 API routes
+and aggregates them into a single router.
+"""
+
 from fastapi import APIRouter
 from api.v1.routes import product
 

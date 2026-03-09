@@ -1,25 +1,31 @@
+"""
+Main entry pointfor the FastAPI Product CRUD application.
+
+This file initializes the FastAPI app, registers middleware,
+loads database models, and includes API routers.
+"""
+
 from fastapi import FastAPI
 
-from core.database import engine, Base
 from api.v1.router import api_router
-
+from core.database import Base, engine
 from middleware.request_logger import RequestLoggingMiddleware
-from models import request_log
-
-from utils.exception_handlers import base_exception_handler
-from utils.exceptions import BaseAppException
-
 
 app = FastAPI()
 
+
 Base.metadata.create_all(bind=engine)
+
 
 app.add_middleware(RequestLoggingMiddleware)
 
-app.add_exception_handler(BaseAppException, base_exception_handler)
 
 app.include_router(api_router)
 
+
 @app.get("/")
 def root():
+    """
+    Root endpoint to verify that the API service is running.
+    """
     return {"message": "CRUD API is running "}
