@@ -52,6 +52,7 @@ Benefits:
 
 # Project Structure
 FASTAPI
+
 │
 ├── app
 │   ├── api
@@ -125,7 +126,8 @@ FASTAPI
     http://127.0.0.1:8000/docs
 
 # API Endpoints
-* Student APIs 
+# Student APIs 
+
 | Method | Endpoint       | Description       |
 | ------ | -------------- | ----------------- |
 | POST   | /students      | Create student    |
@@ -134,7 +136,8 @@ FASTAPI
 | PUT    | /students/{id} | Update student    |
 | DELETE | /students/{id} | Delete student    |
 
-* File APIs
+# File APIs
+
 | Method | Endpoint | Description         |
 | ------ | -------- | ------------------- |
 | POST   | /files   | Upload file         |
