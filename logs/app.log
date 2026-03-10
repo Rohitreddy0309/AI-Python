@@ -568,3 +568,7 @@ WHERE tasks.id = %(id_1)s
 2026-03-10 16:08:29,494 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0073s | 155057ac-5b16-4396-ba6f-f700a14f94be
 2026-03-10 16:08:29,608 - INFO - app_logger - POST /tasks/1/upload | testclient | 0.0164s | 77639da1-f8e2-48d2-936a-42221546a8e7
 2026-03-10 16:08:29,608 - app_logger - INFO - POST /tasks/1/upload | testclient | 0.0164s | 77639da1-f8e2-48d2-936a-42221546a8e7
+2026-03-10 17:20:57,513 - INFO - app_logger - GET / | 127.0.0.1 | 0.0919s | f053e5b6-b6a7-4e11-bb7a-e538d1c97dca
+2026-03-10 17:20:57,795 - INFO - app_logger - GET /favicon.ico | 127.0.0.1 | 0.0022s | d0f326b0-c8b6-489e-855b-79d6bca67d1e
+2026-03-10 17:21:01,892 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0008s | 52b7ddf3-7d53-4d47-90ea-669d218ae70b
+2026-03-10 17:21:02,500 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0998s | 8bce97cf-b372-4efa-8984-2369f1d454fa
