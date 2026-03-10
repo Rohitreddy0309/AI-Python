@@ -7,7 +7,7 @@ updating, and deleting students.
 
 from sqlalchemy.orm import Session
 
-from app.api.v1.routes.file import get_db
+from app.core.database import get_db
 from app.services.student_service import StudentService
 from fastapi import APIRouter, Depends
 

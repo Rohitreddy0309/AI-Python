@@ -12,7 +12,7 @@ from sqlalchemy import Column, Float, Integer, String
 from app.core.database import Base
 
 
-class RequestLog(Base):
+class RequestLog(Base):  # pylint: disable=too-few-public-methods
     """
     SQLAlchemy model representing a log of an HTTP request.
 
@@ -37,3 +37,11 @@ class RequestLog(Base):
     response_time = Column(Float)
     filename = Column(String, nullable=True)
     student_name = Column(String, nullable=True)
+
+    def __repr__(self) -> str:
+        """Return string representation of RequestLog."""
+        return (
+            f"RequestLog(id={self.id}, request_id={self.request_id!r}, "
+            f"method={self.method!r}, endpoint={self.endpoint!r}, "
+            f"response_time={self.response_time})"
+        )

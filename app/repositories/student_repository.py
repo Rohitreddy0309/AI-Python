@@ -10,6 +10,7 @@ student ID for new entries.
 from sqlalchemy.orm import Session
 
 from app.models.student import Student
+from app.utils.db_helpers import get_lowest_available_id
 
 
 class StudentRepository:
@@ -17,7 +18,6 @@ class StudentRepository:
     Repository class for interacting with Student records in the database.
 
     Methods:
-        get_lowest_available_id(db): Returns the lowest unused student ID.
         create_student(db, name, age, marks): Creates a new student record.
         get_all_students(db): Retrieves all student records.
         get_student(db, student_id): Retrieves a student record by ID.
@@ -25,25 +25,9 @@ class StudentRepository:
         delete_student(db, student): Deletes a student record.
     """
 
-    def get_lowest_available_id(self, db: Session):
-        """
-        Find the lowest available student ID not currently in use.
-
-        Args:
-            db (Session): SQLAlchemy database session.
-
-        Returns:
-            int: Lowest available student ID.
-        """
-        ids = db.query(Student.id).order_by(Student.id).all()
-
-        expected = 1
-        for (id_val,) in ids:
-            if id_val != expected:
-                return expected
-            expected += 1
-
-        return expected
+    def __repr__(self) -> str:
+        """Return string representation of StudentRepository."""
+        return "StudentRepository()"
 
     def create_student(self, db: Session, name: str, age: int, marks: int):
         """
@@ -58,7 +42,7 @@ class StudentRepository:
         Returns:
             Student: The newly created Student object.
         """
-        new_id = self.get_lowest_available_id(db)
+        new_id = get_lowest_available_id(db, Student)
         student = Student(id=new_id, name=name, age=age, marks=marks)
         db.add(student)
         db.commit()
@@ -90,7 +74,9 @@ class StudentRepository:
         """
         return db.query(Student).filter(Student.id == student_id).first()
 
-    def update_student(self, db: Session, student, name: str, age: int, marks: int):
+    def update_student(  # pylint: disable=too-many-arguments,too-many-positional-arguments
+        self, db: Session, student, name: str, age: int, marks: int
+    ):
         """
         Update an existing student record in the database.
 

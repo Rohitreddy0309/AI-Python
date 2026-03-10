@@ -12,20 +12,8 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.models.file import File
 from app.repositories.file_repository import FileRepository
+from app.utils.db_helpers import get_lowest_available_id
 from fastapi import HTTPException, UploadFile
-
-
-def get_lowest_available_id(db: Session):
-
-    ids = db.query(File.id).order_by(File.id).all()
-
-    expected = 1
-    for (id_val,) in ids:
-        if id_val != expected:
-            return expected
-        expected += 1
-
-    return expected
 
 
 class FileService:
@@ -35,6 +23,10 @@ class FileService:
 
     def __init__(self):
         self.repository = FileRepository()
+
+    def __repr__(self) -> str:
+        """Return string representation of FileService."""
+        return "FileService()"
 
     async def save_file(self, db: Session, upload_file: UploadFile):
         """
@@ -54,7 +46,7 @@ class FileService:
         with open(file_path, "wb") as f:
             f.write(contents)
 
-        new_id = get_lowest_available_id(db)
+        new_id = get_lowest_available_id(db, File)
 
         db_file = self.repository.create_file(
             db, new_id, upload_file.filename, file_path
@@ -63,10 +55,28 @@ class FileService:
         return db_file
 
     def get_files(self, db: Session):
+        """
+        Retrieve all files.
+
+        Args:
+            db (Session): Database session
+
+        Returns:
+            list: List of all files
+        """
         return self.repository.get_all_files(db)
 
     def delete_file(self, db: Session, file_id: int):
+        """
+        Delete a file by ID.
 
+        Args:
+            db (Session): Database session
+            file_id (int): ID of the file to delete
+
+        Returns:
+            dict: Deletion status message
+        """
         db_file = self.repository.get_file(db, file_id)
 
         if not db_file:

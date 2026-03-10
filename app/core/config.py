@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql://postgres:Chethan2004@localhost:5432/studentdb"
     UPLOAD_DIR: str = "app/uploads"
 
-    class Config:
+    class Config:  # pylint: disable=too-few-public-methods
         """
         Pydantic configuration class.
 
@@ -28,6 +28,10 @@ class Settings(BaseSettings):
         """
 
         env_file = ".env"
+
+    def __repr__(self) -> str:
+        """Return string representation of Settings."""
+        return f"Settings(DATABASE_URL={self.DATABASE_URL!r}, UPLOAD_DIR={self.UPLOAD_DIR!r})"
 
 
 settings = Settings()

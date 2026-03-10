@@ -8,7 +8,7 @@ API usage.
 
 from sqlalchemy.orm import Session
 
-from app.core.database import SessionLocal
+from app.core.database import get_db
 from app.schemas.file import FileResponse
 from app.services.file_service import FileService
 from app.utils.rate_limiter import rate_limiter
@@ -16,20 +16,6 @@ from fastapi import APIRouter, Depends, File, UploadFile
 
 router = APIRouter()
 file_service = FileService()
-
-
-def get_db():
-    """
-    Provides a database session for each request.
-
-    Yields:
-        Session: SQLAlchemy database session
-    """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post(

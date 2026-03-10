@@ -9,7 +9,7 @@ output in API responses.
 from pydantic import BaseModel
 
 
-class StudentCreate(BaseModel):
+class StudentCreate(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Schema for creating a new student.
 
@@ -23,8 +23,12 @@ class StudentCreate(BaseModel):
     age: int
     marks: int
 
+    def __repr__(self) -> str:
+        """Return string representation of StudentCreate."""
+        return f"StudentCreate(name={self.name!r}, age={self.age}, marks={self.marks})"
 
-class StudentUpdate(BaseModel):
+
+class StudentUpdate(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Schema for updating an existing student.
 
@@ -38,8 +42,12 @@ class StudentUpdate(BaseModel):
     age: int
     marks: int
 
+    def __repr__(self) -> str:
+        """Return string representation of StudentUpdate."""
+        return f"StudentUpdate(name={self.name!r}, age={self.age}, marks={self.marks})"
 
-class StudentResponse(BaseModel):
+
+class StudentResponse(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Schema for returning student information in API responses.
 
@@ -55,7 +63,7 @@ class StudentResponse(BaseModel):
     age: int
     marks: int
 
-    class Config:
+    class Config:  # pylint: disable=too-few-public-methods
         """
         Pydantic model configuration.
 
@@ -64,3 +72,10 @@ class StudentResponse(BaseModel):
         """
 
         from_attributes = True
+
+    def __repr__(self) -> str:
+        """Return string representation of StudentResponse."""
+        return (
+            f"StudentResponse(id={self.id}, name={self.name!r}, "
+            f"age={self.age}, marks={self.marks})"
+        )

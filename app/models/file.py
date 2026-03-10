@@ -9,7 +9,7 @@ from sqlalchemy import Column, Integer, String
 from app.core.database import Base
 
 
-class File(Base):
+class File(Base):  # pylint: disable=too-few-public-methods
     """
     SQLAlchemy model for the 'files' table.
 
@@ -26,3 +26,7 @@ class File(Base):
     filename = Column(String, nullable=False)
     filepath = Column(String, nullable=False)
     status = Column(String)
+
+    def __repr__(self) -> str:
+        """Return string representation of File."""
+        return f"File(id={self.id}, filename={self.filename!r}, filepath={self.filepath!r})"

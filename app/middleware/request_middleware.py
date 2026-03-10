@@ -17,17 +17,25 @@ import uuid
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 
-from app.core.database import SessionLocal
+from app.core.database import session_local
 from app.models.request_log import RequestLog
 
 
-class RequestLoggingMiddleware(BaseHTTPMiddleware):
+class RequestLoggingMiddleware(BaseHTTPMiddleware):  # pylint: disable=too-few-public-methods
     """
     Middleware for logging HTTP requests to the database.
 
     Attributes:
         None
     """
+
+    def __repr__(self) -> str:
+        """Return string representation of RequestLoggingMiddleware."""
+        return "RequestLoggingMiddleware()"
+
+    def __str__(self) -> str:
+        """Return string representation of RequestLoggingMiddleware."""
+        return self.__repr__()
 
     async def dispatch(self, request: Request, call_next):
         """
@@ -70,7 +78,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
         process_time = time.time() - start_time
 
-        db = SessionLocal()
+        db = session_local()
 
         log = RequestLog(
             request_id=request_id,

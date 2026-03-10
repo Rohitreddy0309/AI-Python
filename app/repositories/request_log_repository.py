@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from app.models.request_log import RequestLog
 
 
-class RequestLogRepository:
+class RequestLogRepository:  # pylint: disable=too-few-public-methods
     """
     Repository class for interacting with RequestLog records in the database.
 
@@ -21,7 +21,11 @@ class RequestLogRepository:
             Creates a new request log entry.
     """
 
-    def create_log(
+    def __repr__(self) -> str:
+        """Return string representation of RequestLogRepository."""
+        return "RequestLogRepository()"
+
+    def create_log(  # pylint: disable=too-many-arguments,too-many-positional-arguments
         self,
         db: Session,
         request_id: str,

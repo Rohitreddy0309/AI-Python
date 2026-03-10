@@ -22,6 +22,10 @@ class FileRepository:
         delete_file(db, file): Deletes a specified file record.
     """
 
+    def __repr__(self) -> str:
+        """Return string representation of FileRepository."""
+        return "FileRepository()"
+
     def create_file(self, db: Session, file_id: int, filename: str, filepath: str):
         """
         Create a new file record in the database.

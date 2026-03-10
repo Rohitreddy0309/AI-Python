@@ -8,7 +8,7 @@ The FileResponse schema represents a file's metadata returned to clients.
 from pydantic import BaseModel
 
 
-class FileResponse(BaseModel):
+class FileResponse(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Schema for returning file information in API responses.
 
@@ -22,7 +22,7 @@ class FileResponse(BaseModel):
     filename: str
     filepath: str
 
-    class Config:
+    class Config:  # pylint: disable=too-few-public-methods
         """
         Pydantic model configuration.
 
@@ -31,3 +31,7 @@ class FileResponse(BaseModel):
         """
 
         from_attributes = True
+
+    def __repr__(self) -> str:
+        """Return string representation of FileResponse."""
+        return f"FileResponse(id={self.id}, filename={self.filename!r}, filepath={self.filepath!r})"

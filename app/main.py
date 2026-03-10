@@ -10,10 +10,11 @@ Features:
 - Includes the versioned API router under the '/api/v1' prefix.
 """
 
-from app.api.v1.router import api_router
-from core.database import Base, engine
-from app.middleware.request_middleware import RequestLoggingMiddleware
 from fastapi import FastAPI
+
+from app.api.v1.router import api_router
+from app.core.database import Base, engine
+from app.middleware.request_middleware import RequestLoggingMiddleware
 
 Base.metadata.create_all(bind=engine)
 
