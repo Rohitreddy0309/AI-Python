@@ -256,3 +256,315 @@ LINE 1: ...mail, blood_group, "PH_number") VALUES ('prasad', 'c++', 'te...
 2026-03-02 18:24:58,522 - app_logger - DEBUG - Fetching all employees from the database
 2026-03-02 18:24:58,525 - app_logger - INFO - Retrieved 5 employees from DB
 2026-03-02 18:24:58,525 - app_logger - INFO - Returning 5 employees
+2026-03-10 13:52:51,684 - INFO - app_logger - GET / | 127.0.0.1 | 0.0014s | 17268f36-2075-4a6e-a120-8c5c9d743eb2
+2026-03-10 13:52:51,684 - app_logger - INFO - GET / | 127.0.0.1 | 0.0014s | 17268f36-2075-4a6e-a120-8c5c9d743eb2
+2026-03-10 13:52:51,785 - INFO - app_logger - GET /favicon.ico | 127.0.0.1 | 0.0030s | 1e053230-4696-4eda-ae0e-122ef7048d5d
+2026-03-10 13:52:51,785 - app_logger - INFO - GET /favicon.ico | 127.0.0.1 | 0.0030s | 1e053230-4696-4eda-ae0e-122ef7048d5d
+2026-03-10 13:53:09,576 - INFO - app_logger - GET / | 127.0.0.1 | 0.0008s | 3dbd440d-3aff-45c1-80c1-75eb30978c8d
+2026-03-10 13:53:09,576 - app_logger - INFO - GET / | 127.0.0.1 | 0.0008s | 3dbd440d-3aff-45c1-80c1-75eb30978c8d
+2026-03-10 13:53:13,157 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0013s | f91595db-c98c-4c94-83d5-1db920ee51a1
+2026-03-10 13:53:13,157 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0013s | f91595db-c98c-4c94-83d5-1db920ee51a1
+2026-03-10 13:53:13,429 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0760s | 027a81c7-505e-4df7-9e59-4073c2eb4323
+2026-03-10 13:53:13,429 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0760s | 027a81c7-505e-4df7-9e59-4073c2eb4323
+2026-03-10 13:53:56,277 - INFO - app_logger - POST /tasks/1/upload | 127.0.0.1 | 0.0183s | 59bbe790-03a5-4781-95c9-522228f4ebd2
+2026-03-10 13:53:56,277 - app_logger - INFO - POST /tasks/1/upload | 127.0.0.1 | 0.0183s | 59bbe790-03a5-4781-95c9-522228f4ebd2
+2026-03-10 13:54:01,291 - INFO - app_logger - Finished processing file: uploads/WhatsApp Image 2026-03-09 at 10.45.19 PM.jpeg
+2026-03-10 13:54:01,291 - app_logger - INFO - Finished processing file: uploads/WhatsApp Image 2026-03-09 at 10.45.19 PM.jpeg
+2026-03-10 13:54:11,071 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0020s | 5ecab9a1-f63b-48fc-a9ad-692aee4c796b
+2026-03-10 13:54:11,071 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0020s | 5ecab9a1-f63b-48fc-a9ad-692aee4c796b
+2026-03-10 13:54:14,701 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0011s | efe160aa-826f-4e32-80fd-ac4f1ff2b01c
+2026-03-10 13:54:14,701 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0011s | efe160aa-826f-4e32-80fd-ac4f1ff2b01c
+2026-03-10 13:59:32,718 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0010s | b4dbcd15-1dbf-478b-9e59-c88b16a007b3
+2026-03-10 13:59:32,718 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0010s | b4dbcd15-1dbf-478b-9e59-c88b16a007b3
+2026-03-10 14:04:44,691 - INFO - app_logger - GET / | 127.0.0.1 | 0.0035s | 07b4d44f-40c6-4010-a2b6-2b401c64b171
+2026-03-10 14:04:44,691 - app_logger - INFO - GET / | 127.0.0.1 | 0.0035s | 07b4d44f-40c6-4010-a2b6-2b401c64b171
+2026-03-10 14:04:49,743 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0007s | de57da82-338f-4d92-97d7-1008f50ba2cc
+2026-03-10 14:04:49,743 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0007s | de57da82-338f-4d92-97d7-1008f50ba2cc
+2026-03-10 14:04:49,923 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0398s | b5d6a961-e6a1-4e0d-a8b7-858dfc36d649
+2026-03-10 14:04:49,923 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0398s | b5d6a961-e6a1-4e0d-a8b7-858dfc36d649
+2026-03-10 14:04:57,267 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:04:57,267 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:04:57,268 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:04:57,268 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:04:57,275 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:04:57,275 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:04:57,337 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0140s | e4e31128-f994-4e9c-aae7-a9cd25e3c620
+2026-03-10 14:04:57,337 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0140s | e4e31128-f994-4e9c-aae7-a9cd25e3c620
+2026-03-10 14:05:35,165 - INFO - app_logger - POST /tasks/6/upload | 127.0.0.1 | 0.0135s | 7f4dfefd-e951-49c1-98ca-f94ec7c0a3db
+2026-03-10 14:05:35,165 - app_logger - INFO - POST /tasks/6/upload | 127.0.0.1 | 0.0135s | 7f4dfefd-e951-49c1-98ca-f94ec7c0a3db
+2026-03-10 14:05:40,175 - INFO - app_logger - Finished processing file: uploads/wall2.jpg
+2026-03-10 14:05:40,175 - app_logger - INFO - Finished processing file: uploads/wall2.jpg
+2026-03-10 14:05:43,743 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:05:43,743 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:05:43,744 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:05:43,744 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:05:43,746 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:05:43,746 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:05:43,752 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0060s | 07b8c241-d737-42f8-94b2-a7bc450fa36b
+2026-03-10 14:05:43,752 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0060s | 07b8c241-d737-42f8-94b2-a7bc450fa36b
+2026-03-10 14:13:05,780 - ERROR - app_logger - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:13:05,780 - app_logger - ERROR - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:13:27,119 - ERROR - app_logger - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:13:27,119 - app_logger - ERROR - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:20:07,154 - INFO - app_logger - GET / | 127.0.0.1 | 0.0015s | 87dc970e-7e63-487e-91ae-165af6b864dc
+2026-03-10 14:20:07,154 - app_logger - INFO - GET / | 127.0.0.1 | 0.0015s | 87dc970e-7e63-487e-91ae-165af6b864dc
+2026-03-10 14:20:15,102 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0012s | d65c187d-5595-4383-bf84-92b1c76b33e2
+2026-03-10 14:20:15,102 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0012s | d65c187d-5595-4383-bf84-92b1c76b33e2
+2026-03-10 14:20:15,285 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0382s | af34f1ef-c710-455b-8a00-8b792cdb1e77
+2026-03-10 14:20:15,285 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0382s | af34f1ef-c710-455b-8a00-8b792cdb1e77
+2026-03-10 14:20:27,405 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:20:27,405 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:20:27,405 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:20:27,405 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:20:27,413 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:20:27,413 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:20:27,477 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0125s | cf6c874c-60b2-4cc4-8cbe-8ea81c86c569
+2026-03-10 14:20:27,477 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0125s | cf6c874c-60b2-4cc4-8cbe-8ea81c86c569
+2026-03-10 14:21:00,160 - ERROR - app_logger - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:21:00,160 - app_logger - ERROR - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:21:07,405 - ERROR - app_logger - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:21:07,405 - app_logger - ERROR - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:21:14,572 - ERROR - app_logger - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:21:14,572 - app_logger - ERROR - Unhandled exception: name 'TaskFile' is not defined
+2026-03-10 14:23:24,159 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0017s | 43bc65aa-3c9f-4fe2-96f6-a75b5eec2de0
+2026-03-10 14:23:24,159 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0017s | 43bc65aa-3c9f-4fe2-96f6-a75b5eec2de0
+2026-03-10 14:23:24,583 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.1569s | e5670713-e62c-4fd2-9542-4abebfe98998
+2026-03-10 14:23:24,583 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.1569s | e5670713-e62c-4fd2-9542-4abebfe98998
+2026-03-10 14:23:24,598 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0041s | 2ac6241b-eec4-4d11-81be-d7c83fd30d32
+2026-03-10 14:23:24,598 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0041s | 2ac6241b-eec4-4d11-81be-d7c83fd30d32
+2026-03-10 14:23:25,138 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0039s | 7534a4de-dd98-484d-a275-58e8df34aa11
+2026-03-10 14:23:25,138 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0039s | 7534a4de-dd98-484d-a275-58e8df34aa11
+2026-03-10 14:23:42,448 - INFO - app_logger - POST /tasks/10/upload | 127.0.0.1 | 0.0282s | e5818935-1097-4c62-9e5f-e04dbcd2d157
+2026-03-10 14:23:42,448 - app_logger - INFO - POST /tasks/10/upload | 127.0.0.1 | 0.0282s | e5818935-1097-4c62-9e5f-e04dbcd2d157
+2026-03-10 14:23:47,455 - INFO - app_logger - Finished processing file: uploads/wall3.jpg
+2026-03-10 14:23:47,455 - app_logger - INFO - Finished processing file: uploads/wall3.jpg
+2026-03-10 14:23:53,802 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:23:53,802 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:23:53,803 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:23:53,803 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:23:53,812 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:23:53,812 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:23:53,879 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0131s | 6410c111-2e26-42c3-804d-c1b6a4e6a895
+2026-03-10 14:23:53,879 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0131s | 6410c111-2e26-42c3-804d-c1b6a4e6a895
+2026-03-10 14:44:14,071 - INFO - app_logger - GET / | 127.0.0.1 | 0.0019s | 82ce803f-5706-4a2c-a276-939850bd3f66
+2026-03-10 14:44:14,071 - app_logger - INFO - GET / | 127.0.0.1 | 0.0019s | 82ce803f-5706-4a2c-a276-939850bd3f66
+2026-03-10 14:44:19,987 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0007s | b69b821c-0688-4bb3-931e-b0691f542706
+2026-03-10 14:44:19,987 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0007s | b69b821c-0688-4bb3-931e-b0691f542706
+2026-03-10 14:44:20,171 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0636s | 2c9766f2-a6c9-4be7-9a3b-375b1120bd12
+2026-03-10 14:44:20,171 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0636s | 2c9766f2-a6c9-4be7-9a3b-375b1120bd12
+2026-03-10 14:44:27,229 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:44:27,229 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:44:27,229 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:44:27,229 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:44:27,236 - ERROR - app_logger - Error fetching tasks: (psycopg2.errors.UndefinedColumn) column tasks.file_name does not exist
+LINE 1: ..._description, tasks.completed AS tasks_completed, tasks.file...
+                                                             ^
+
+[SQL: SELECT tasks.id AS tasks_id, tasks.title AS tasks_title, tasks.description AS tasks_description, tasks.completed AS tasks_completed, tasks.file_name AS tasks_file_name 
+FROM tasks]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-03-10 14:44:27,236 - app_logger - ERROR - Error fetching tasks: (psycopg2.errors.UndefinedColumn) column tasks.file_name does not exist
+LINE 1: ..._description, tasks.completed AS tasks_completed, tasks.file...
+                                                             ^
+
+[SQL: SELECT tasks.id AS tasks_id, tasks.title AS tasks_title, tasks.description AS tasks_description, tasks.completed AS tasks_completed, tasks.file_name AS tasks_file_name 
+FROM tasks]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-03-10 14:44:27,237 - ERROR - app_logger - BaseAppException occurred: DatabaseException - Error fetching tasks from the database
+2026-03-10 14:44:27,237 - app_logger - ERROR - BaseAppException occurred: DatabaseException - Error fetching tasks from the database
+2026-03-10 14:44:27,240 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0120s | f191d884-b1e3-4e1a-8f94-b50cf15c83da
+2026-03-10 14:44:27,240 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0120s | f191d884-b1e3-4e1a-8f94-b50cf15c83da
+2026-03-10 14:44:55,406 - ERROR - app_logger - Unhandled exception: (psycopg2.errors.UndefinedColumn) column tasks.file_name does not exist
+LINE 1: ..._description, tasks.completed AS tasks_completed, tasks.file...
+                                                             ^
+
+[SQL: SELECT tasks.id AS tasks_id, tasks.title AS tasks_title, tasks.description AS tasks_description, tasks.completed AS tasks_completed, tasks.file_name AS tasks_file_name 
+FROM tasks 
+WHERE tasks.id = %(id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'id_1': 10, 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-03-10 14:44:55,406 - app_logger - ERROR - Unhandled exception: (psycopg2.errors.UndefinedColumn) column tasks.file_name does not exist
+LINE 1: ..._description, tasks.completed AS tasks_completed, tasks.file...
+                                                             ^
+
+[SQL: SELECT tasks.id AS tasks_id, tasks.title AS tasks_title, tasks.description AS tasks_description, tasks.completed AS tasks_completed, tasks.file_name AS tasks_file_name 
+FROM tasks 
+WHERE tasks.id = %(id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'id_1': 10, 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-03-10 14:47:50,068 - INFO - app_logger - GET / | 127.0.0.1 | 0.0009s | 1e69839e-cbf9-41ae-a664-da4cf027a9ff
+2026-03-10 14:47:50,068 - app_logger - INFO - GET / | 127.0.0.1 | 0.0009s | 1e69839e-cbf9-41ae-a664-da4cf027a9ff
+2026-03-10 14:47:54,085 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0007s | c90fe1f3-f7c0-445a-bd02-be04306942f2
+2026-03-10 14:47:54,085 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0007s | c90fe1f3-f7c0-445a-bd02-be04306942f2
+2026-03-10 14:47:54,275 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0579s | bc547c3e-93fe-4656-801a-ab86ee4ff41a
+2026-03-10 14:47:54,275 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0579s | bc547c3e-93fe-4656-801a-ab86ee4ff41a
+2026-03-10 14:48:03,113 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:48:03,113 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:48:03,114 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:48:03,114 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:48:03,120 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:48:03,120 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:48:03,187 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0120s | fbad1589-ed3b-432b-9726-f7a50fadf6df
+2026-03-10 14:48:03,187 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0120s | fbad1589-ed3b-432b-9726-f7a50fadf6df
+2026-03-10 14:48:22,165 - INFO - app_logger - POST /tasks/10/upload | 127.0.0.1 | 0.0361s | 7f9417dd-c3ab-49c3-8100-9a2a2553d6b5
+2026-03-10 14:48:22,165 - app_logger - INFO - POST /tasks/10/upload | 127.0.0.1 | 0.0361s | 7f9417dd-c3ab-49c3-8100-9a2a2553d6b5
+2026-03-10 14:48:32,061 - INFO - app_logger - Fetching all tasks
+2026-03-10 14:48:32,061 - app_logger - INFO - Fetching all tasks
+2026-03-10 14:48:32,061 - DEBUG - app_logger - Fetching all tasks from the database
+2026-03-10 14:48:32,061 - app_logger - DEBUG - Fetching all tasks from the database
+2026-03-10 14:48:32,063 - INFO - app_logger - Retrieved 5 tasks from DB
+2026-03-10 14:48:32,063 - app_logger - INFO - Retrieved 5 tasks from DB
+2026-03-10 14:48:32,069 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0058s | 46544cd6-f96f-437d-b159-e952591b7cf5
+2026-03-10 14:48:32,069 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0058s | 46544cd6-f96f-437d-b159-e952591b7cf5
+2026-03-10 15:06:53,221 - INFO - app_logger - GET / | 127.0.0.1 | 0.0011s | ff14c2b7-d2d6-43ea-9f33-a2301f6c0f3f
+2026-03-10 15:06:53,221 - app_logger - INFO - GET / | 127.0.0.1 | 0.0011s | ff14c2b7-d2d6-43ea-9f33-a2301f6c0f3f
+2026-03-10 15:06:57,892 - INFO - app_logger - GET /docs | 127.0.0.1 | 0.0008s | a7c89903-32aa-4d4f-b1dd-057569a8b25c
+2026-03-10 15:06:57,892 - app_logger - INFO - GET /docs | 127.0.0.1 | 0.0008s | a7c89903-32aa-4d4f-b1dd-057569a8b25c
+2026-03-10 15:06:58,082 - INFO - app_logger - GET /openapi.json | 127.0.0.1 | 0.0449s | c70e0a14-a204-4066-a431-eea3602f47d6
+2026-03-10 15:06:58,082 - app_logger - INFO - GET /openapi.json | 127.0.0.1 | 0.0449s | c70e0a14-a204-4066-a431-eea3602f47d6
+2026-03-10 15:07:10,595 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:07:10,595 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:07:10,669 - INFO - app_logger - GET /tasks/ | 127.0.0.1 | 0.0121s | 05184afd-e78d-4915-9dbf-c378cc1681e5
+2026-03-10 15:07:10,669 - app_logger - INFO - GET /tasks/ | 127.0.0.1 | 0.0121s | 05184afd-e78d-4915-9dbf-c378cc1681e5
+2026-03-10 15:22:45,889 - INFO - app_logger - GET / | testclient | 0.0026s | ad95ca90-fc29-4901-9448-daf2848c6529
+2026-03-10 15:22:45,889 - app_logger - INFO - GET / | testclient | 0.0026s | ad95ca90-fc29-4901-9448-daf2848c6529
+2026-03-10 15:22:45,905 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:22:45,905 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:22:45,993 - INFO - app_logger - GET /tasks/ | testclient | 0.0139s | 6a9bea6e-f3d0-47c4-b1ce-bb3e1cb6956e
+2026-03-10 15:22:45,993 - app_logger - INFO - GET /tasks/ | testclient | 0.0139s | 6a9bea6e-f3d0-47c4-b1ce-bb3e1cb6956e
+2026-03-10 15:35:22,973 - INFO - app_logger - GET / | testclient | 0.0110s | d9fc4a0c-6405-4abb-b98b-6a3ddec8daec
+2026-03-10 15:35:22,973 - app_logger - INFO - GET / | testclient | 0.0110s | d9fc4a0c-6405-4abb-b98b-6a3ddec8daec
+2026-03-10 15:35:22,997 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:35:22,997 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:35:23,114 - INFO - app_logger - GET /tasks/ | testclient | 0.0183s | c6ef81e3-7bf1-4290-bf6a-1afe2673383c
+2026-03-10 15:35:23,114 - app_logger - INFO - GET /tasks/ | testclient | 0.0183s | c6ef81e3-7bf1-4290-bf6a-1afe2673383c
+2026-03-10 15:43:53,114 - INFO - app_logger - GET / | testclient | 0.0125s | c620b583-4580-454e-881d-e351f2bf72c5
+2026-03-10 15:43:53,114 - app_logger - INFO - GET / | testclient | 0.0125s | c620b583-4580-454e-881d-e351f2bf72c5
+2026-03-10 15:43:53,142 - INFO - app_logger - GET /tasks/ | testclient | 0.0009s | 4bcdd9d5-961d-402e-9943-dd82ce06a794
+2026-03-10 15:43:53,142 - app_logger - INFO - GET /tasks/ | testclient | 0.0009s | 4bcdd9d5-961d-402e-9943-dd82ce06a794
+2026-03-10 15:43:53,161 - INFO - app_logger - POST /tasks/ | testclient | 0.0006s | 69b60ca6-322c-495f-980e-469d7ad9a13d
+2026-03-10 15:43:53,161 - app_logger - INFO - POST /tasks/ | testclient | 0.0006s | 69b60ca6-322c-495f-980e-469d7ad9a13d
+2026-03-10 15:43:53,470 - INFO - app_logger - PUT /tasks/1 | testclient | 0.0006s | 34c6d344-bd40-4874-876a-121692ac3430
+2026-03-10 15:43:53,470 - app_logger - INFO - PUT /tasks/1 | testclient | 0.0006s | 34c6d344-bd40-4874-876a-121692ac3430
+2026-03-10 15:43:53,484 - INFO - app_logger - DELETE /tasks/1 | testclient | 0.0009s | 3008a09c-cc1f-4206-a3fd-d2d1f227fe56
+2026-03-10 15:43:53,484 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0009s | 3008a09c-cc1f-4206-a3fd-d2d1f227fe56
+2026-03-10 15:47:56,807 - INFO - app_logger - GET / | testclient | 0.0105s | 95d3647d-0908-417b-bf20-96183b28eb2b
+2026-03-10 15:47:56,807 - app_logger - INFO - GET / | testclient | 0.0105s | 95d3647d-0908-417b-bf20-96183b28eb2b
+2026-03-10 15:47:56,831 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:47:56,831 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:47:56,955 - INFO - app_logger - GET /tasks/ | testclient | 0.0179s | 42a3cd2d-da1d-4264-86bd-9f283cf1e87a
+2026-03-10 15:47:56,955 - app_logger - INFO - GET /tasks/ | testclient | 0.0179s | 42a3cd2d-da1d-4264-86bd-9f283cf1e87a
+2026-03-10 15:47:56,976 - INFO - app_logger - Creating new task
+2026-03-10 15:47:56,976 - app_logger - INFO - Creating new task
+2026-03-10 15:47:56,978 - ERROR - app_logger - Unhandled exception: 'TaskService' object has no attribute 'create_new_task'
+2026-03-10 15:47:56,978 - app_logger - ERROR - Unhandled exception: 'TaskService' object has no attribute 'create_new_task'
+2026-03-10 15:47:58,062 - ERROR - app_logger - Unhandled exception: 'TaskService' object has no attribute 'update_task'
+2026-03-10 15:47:58,062 - app_logger - ERROR - Unhandled exception: 'TaskService' object has no attribute 'update_task'
+2026-03-10 15:47:58,727 - ERROR - app_logger - Unhandled exception: 'TaskService' object has no attribute 'delete_task'
+2026-03-10 15:47:58,727 - app_logger - ERROR - Unhandled exception: 'TaskService' object has no attribute 'delete_task'
+2026-03-10 15:50:41,926 - INFO - app_logger - GET / | testclient | 0.0111s | b719ee02-1f40-4dae-b505-6d9e401f6b0b
+2026-03-10 15:50:41,926 - app_logger - INFO - GET / | testclient | 0.0111s | b719ee02-1f40-4dae-b505-6d9e401f6b0b
+2026-03-10 15:50:41,949 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:50:41,949 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:50:42,039 - INFO - app_logger - GET /tasks/ | testclient | 0.0158s | 8924d6d8-0ce6-454f-be51-d65333be283d
+2026-03-10 15:50:42,039 - app_logger - INFO - GET /tasks/ | testclient | 0.0158s | 8924d6d8-0ce6-454f-be51-d65333be283d
+2026-03-10 15:50:42,058 - INFO - app_logger - Creating new task
+2026-03-10 15:50:42,058 - app_logger - INFO - Creating new task
+2026-03-10 15:50:42,060 - ERROR - app_logger - Unhandled exception: 'TaskRepository' object has no attribute 'create_task'
+2026-03-10 15:50:42,060 - app_logger - ERROR - Unhandled exception: 'TaskRepository' object has no attribute 'create_task'
+2026-03-10 15:50:42,972 - ERROR - app_logger - Unhandled exception: 'TaskRepository' object has no attribute 'update_task'
+2026-03-10 15:50:42,972 - app_logger - ERROR - Unhandled exception: 'TaskRepository' object has no attribute 'update_task'
+2026-03-10 15:50:43,709 - ERROR - app_logger - Unhandled exception: 'TaskRepository' object has no attribute 'delete_task'
+2026-03-10 15:50:43,709 - app_logger - ERROR - Unhandled exception: 'TaskRepository' object has no attribute 'delete_task'
+2026-03-10 15:53:36,056 - INFO - app_logger - GET / | testclient | 0.0092s | 3c6e2a6c-e3ee-4016-9c37-c591a9e5baa0
+2026-03-10 15:53:36,056 - app_logger - INFO - GET / | testclient | 0.0092s | 3c6e2a6c-e3ee-4016-9c37-c591a9e5baa0
+2026-03-10 15:53:36,081 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:53:36,081 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:53:36,179 - INFO - app_logger - GET /tasks/ | testclient | 0.0156s | 9fb4d6ab-3912-42b6-ba55-a41c964cd58f
+2026-03-10 15:53:36,179 - app_logger - INFO - GET /tasks/ | testclient | 0.0156s | 9fb4d6ab-3912-42b6-ba55-a41c964cd58f
+2026-03-10 15:53:36,198 - INFO - app_logger - Creating new task
+2026-03-10 15:53:36,198 - app_logger - INFO - Creating new task
+2026-03-10 15:53:36,219 - INFO - app_logger - POST /tasks/ | testclient | 0.0272s | 67becc0b-6657-4624-976c-a5c93cb44453
+2026-03-10 15:53:36,219 - app_logger - INFO - POST /tasks/ | testclient | 0.0272s | 67becc0b-6657-4624-976c-a5c93cb44453
+2026-03-10 15:53:36,243 - INFO - app_logger - PUT /tasks/1 | testclient | 0.0109s | 6415a6d5-3a25-430d-b427-d0696c266dd0
+2026-03-10 15:53:36,243 - app_logger - INFO - PUT /tasks/1 | testclient | 0.0109s | 6415a6d5-3a25-430d-b427-d0696c266dd0
+2026-03-10 15:53:36,262 - INFO - app_logger - DELETE /tasks/1 | testclient | 0.0056s | 0ec2d2aa-7ae5-47c1-bba7-6bcd454593f1
+2026-03-10 15:53:36,262 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0056s | 0ec2d2aa-7ae5-47c1-bba7-6bcd454593f1
+2026-03-10 15:58:08,481 - INFO - app_logger - GET /employees/ | testclient | 0.0085s | a5524e5e-8fcf-406c-b663-0c5f01a010fd
+2026-03-10 15:58:08,481 - app_logger - INFO - GET /employees/ | testclient | 0.0085s | a5524e5e-8fcf-406c-b663-0c5f01a010fd
+2026-03-10 15:58:08,502 - INFO - app_logger - POST /employees/ | testclient | 0.0005s | e03148c2-82f9-4ac8-8898-ffb2e37bf1b9
+2026-03-10 15:58:08,502 - app_logger - INFO - POST /employees/ | testclient | 0.0005s | e03148c2-82f9-4ac8-8898-ffb2e37bf1b9
+2026-03-10 15:58:08,678 - INFO - app_logger - PUT /employees/1 | testclient | 0.0009s | 4b7de274-6f44-423c-aba2-b0a2906bcb90
+2026-03-10 15:58:08,678 - app_logger - INFO - PUT /employees/1 | testclient | 0.0009s | 4b7de274-6f44-423c-aba2-b0a2906bcb90
+2026-03-10 15:58:08,688 - INFO - app_logger - DELETE /employees/1 | testclient | 0.0005s | 0ed3df92-4682-4448-8d26-677683275bd7
+2026-03-10 15:58:08,688 - app_logger - INFO - DELETE /employees/1 | testclient | 0.0005s | 0ed3df92-4682-4448-8d26-677683275bd7
+2026-03-10 15:58:08,702 - INFO - app_logger - GET / | testclient | 0.0026s | 9a84dde7-f2f9-435d-9d9f-49d959a3594f
+2026-03-10 15:58:08,702 - app_logger - INFO - GET / | testclient | 0.0026s | 9a84dde7-f2f9-435d-9d9f-49d959a3594f
+2026-03-10 15:58:08,714 - INFO - app_logger - Fetching all tasks
+2026-03-10 15:58:08,714 - app_logger - INFO - Fetching all tasks
+2026-03-10 15:58:08,794 - INFO - app_logger - GET /tasks/ | testclient | 0.0134s | e0ac98a0-108f-4248-91ba-0d1ee98da193
+2026-03-10 15:58:08,794 - app_logger - INFO - GET /tasks/ | testclient | 0.0134s | e0ac98a0-108f-4248-91ba-0d1ee98da193
+2026-03-10 15:58:08,812 - INFO - app_logger - Creating new task
+2026-03-10 15:58:08,812 - app_logger - INFO - Creating new task
+2026-03-10 15:58:08,825 - INFO - app_logger - POST /tasks/ | testclient | 0.0182s | 089f51c2-57c2-4d2f-b833-e7cf896877b3
+2026-03-10 15:58:08,825 - app_logger - INFO - POST /tasks/ | testclient | 0.0182s | 089f51c2-57c2-4d2f-b833-e7cf896877b3
+2026-03-10 15:58:08,846 - INFO - app_logger - PUT /tasks/1 | testclient | 0.0096s | 8c7ce99d-bae8-4c64-a389-2a192403d94e
+2026-03-10 15:58:08,846 - app_logger - INFO - PUT /tasks/1 | testclient | 0.0096s | 8c7ce99d-bae8-4c64-a389-2a192403d94e
+2026-03-10 15:58:08,864 - INFO - app_logger - DELETE /tasks/1 | testclient | 0.0071s | 8e9e308f-bc62-4b13-a1fe-bd9d44668b41
+2026-03-10 15:58:08,864 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0071s | 8e9e308f-bc62-4b13-a1fe-bd9d44668b41
+2026-03-10 15:58:08,952 - INFO - app_logger - POST /tasks/1/upload | testclient | 0.0162s | c06e2bbd-5706-4381-bf2a-dcb427e3d3bf
+2026-03-10 15:58:08,952 - app_logger - INFO - POST /tasks/1/upload | testclient | 0.0162s | c06e2bbd-5706-4381-bf2a-dcb427e3d3bf
+2026-03-10 16:05:58,087 - INFO - app_logger - Fetching all employees
+2026-03-10 16:05:58,087 - app_logger - INFO - Fetching all employees
+2026-03-10 16:05:58,204 - INFO - app_logger - GET /employees/ | testclient | 0.0529s | 64c56890-4d44-4b18-bcb2-ab775f77e588
+2026-03-10 16:05:58,204 - app_logger - INFO - GET /employees/ | testclient | 0.0529s | 64c56890-4d44-4b18-bcb2-ab775f77e588
+2026-03-10 16:05:58,232 - INFO - app_logger - POST /employees/ | testclient | 0.0082s | dd8656ae-8344-431a-a7c7-669876986581
+2026-03-10 16:05:58,232 - app_logger - INFO - POST /employees/ | testclient | 0.0082s | dd8656ae-8344-431a-a7c7-669876986581
+2026-03-10 16:05:58,468 - INFO - app_logger - PUT /employees/1 | testclient | 0.0047s | 11e23c66-e193-47ab-9ceb-6d8d748c549d
+2026-03-10 16:05:58,468 - app_logger - INFO - PUT /employees/1 | testclient | 0.0047s | 11e23c66-e193-47ab-9ceb-6d8d748c549d
+2026-03-10 16:05:58,497 - INFO - app_logger - DELETE /employees/1 | testclient | 0.0129s | 63126e2c-cb33-4fa0-bb79-3eb21f6093b9
+2026-03-10 16:05:58,497 - app_logger - INFO - DELETE /employees/1 | testclient | 0.0129s | 63126e2c-cb33-4fa0-bb79-3eb21f6093b9
+2026-03-10 16:05:58,514 - INFO - app_logger - GET / | testclient | 0.0034s | 3bd74b91-3a39-4792-8ceb-fc69a5082223
+2026-03-10 16:05:58,514 - app_logger - INFO - GET / | testclient | 0.0034s | 3bd74b91-3a39-4792-8ceb-fc69a5082223
+2026-03-10 16:05:58,525 - INFO - app_logger - Fetching all tasks
+2026-03-10 16:05:58,525 - app_logger - INFO - Fetching all tasks
+2026-03-10 16:05:58,535 - INFO - app_logger - GET /tasks/ | testclient | 0.0101s | 770a2d81-7820-442f-a55c-b39c3f7dd124
+2026-03-10 16:05:58,535 - app_logger - INFO - GET /tasks/ | testclient | 0.0101s | 770a2d81-7820-442f-a55c-b39c3f7dd124
+2026-03-10 16:05:58,548 - INFO - app_logger - Creating new task
+2026-03-10 16:05:58,548 - app_logger - INFO - Creating new task
+2026-03-10 16:05:58,563 - INFO - app_logger - POST /tasks/ | testclient | 0.0133s | ef846dd6-1351-4802-9219-2d29ffc96949
+2026-03-10 16:05:58,563 - app_logger - INFO - POST /tasks/ | testclient | 0.0133s | ef846dd6-1351-4802-9219-2d29ffc96949
+2026-03-10 16:05:58,600 - INFO - app_logger - PUT /tasks/1 | testclient | 0.0083s | b5036250-de6f-4b71-b5e6-37d022366dee
+2026-03-10 16:05:58,600 - app_logger - INFO - PUT /tasks/1 | testclient | 0.0083s | b5036250-de6f-4b71-b5e6-37d022366dee
+2026-03-10 16:05:58,619 - INFO - app_logger - DELETE /tasks/1 | testclient | 0.0060s | b789882a-67ea-457f-9d86-840aa99b4b9c
+2026-03-10 16:05:58,619 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0060s | b789882a-67ea-457f-9d86-840aa99b4b9c
+2026-03-10 16:05:58,709 - INFO - app_logger - POST /tasks/1/upload | testclient | 0.0153s | 3c366015-df8a-428f-a544-30e2392afd9f
+2026-03-10 16:05:58,709 - app_logger - INFO - POST /tasks/1/upload | testclient | 0.0153s | 3c366015-df8a-428f-a544-30e2392afd9f
+2026-03-10 16:08:28,935 - INFO - app_logger - Fetching all employees
+2026-03-10 16:08:28,935 - app_logger - INFO - Fetching all employees
+2026-03-10 16:08:29,065 - INFO - app_logger - GET /employees/ | testclient | 0.0621s | e7aa1dd7-0843-4607-9289-0f7fc72f063c
+2026-03-10 16:08:29,065 - app_logger - INFO - GET /employees/ | testclient | 0.0621s | e7aa1dd7-0843-4607-9289-0f7fc72f063c
+2026-03-10 16:08:29,096 - INFO - app_logger - POST /employees/ | testclient | 0.0096s | 56ba48f1-e3a7-4454-a019-6a7e20a03cb2
+2026-03-10 16:08:29,096 - app_logger - INFO - POST /employees/ | testclient | 0.0096s | 56ba48f1-e3a7-4454-a019-6a7e20a03cb2
+2026-03-10 16:08:29,350 - INFO - app_logger - PUT /employees/1 | testclient | 0.0047s | 3dd76046-6eb8-4b09-bdfd-6af2fbac1dc4
+2026-03-10 16:08:29,350 - app_logger - INFO - PUT /employees/1 | testclient | 0.0047s | 3dd76046-6eb8-4b09-bdfd-6af2fbac1dc4
+2026-03-10 16:08:29,379 - INFO - app_logger - DELETE /employees/1 | testclient | 0.0117s | 552265db-2f83-4cab-acbf-58dff37dfb0c
+2026-03-10 16:08:29,379 - app_logger - INFO - DELETE /employees/1 | testclient | 0.0117s | 552265db-2f83-4cab-acbf-58dff37dfb0c
+2026-03-10 16:08:29,395 - INFO - app_logger - GET / | testclient | 0.0021s | d53e788d-1863-48bb-aacf-8409ab6c1fd8
+2026-03-10 16:08:29,395 - app_logger - INFO - GET / | testclient | 0.0021s | d53e788d-1863-48bb-aacf-8409ab6c1fd8
+2026-03-10 16:08:29,409 - INFO - app_logger - Fetching all tasks
+2026-03-10 16:08:29,409 - app_logger - INFO - Fetching all tasks
+2026-03-10 16:08:29,422 - INFO - app_logger - GET /tasks/ | testclient | 0.0130s | 0836e31f-e69a-4418-b142-9b3e375a8c2e
+2026-03-10 16:08:29,422 - app_logger - INFO - GET /tasks/ | testclient | 0.0130s | 0836e31f-e69a-4418-b142-9b3e375a8c2e
+2026-03-10 16:08:29,436 - INFO - app_logger - Creating new task
+2026-03-10 16:08:29,436 - app_logger - INFO - Creating new task
+2026-03-10 16:08:29,451 - INFO - app_logger - POST /tasks/ | testclient | 0.0163s | eeb3b057-a824-48a4-b535-53886f674e5c
+2026-03-10 16:08:29,451 - app_logger - INFO - POST /tasks/ | testclient | 0.0163s | eeb3b057-a824-48a4-b535-53886f674e5c
+2026-03-10 16:08:29,474 - INFO - app_logger - PUT /tasks/1 | testclient | 0.0120s | db3ef55e-2866-4ffc-ba34-ac04f9b65adc
+2026-03-10 16:08:29,474 - app_logger - INFO - PUT /tasks/1 | testclient | 0.0120s | db3ef55e-2866-4ffc-ba34-ac04f9b65adc
+2026-03-10 16:08:29,494 - INFO - app_logger - DELETE /tasks/1 | testclient | 0.0073s | 155057ac-5b16-4396-ba6f-f700a14f94be
+2026-03-10 16:08:29,494 - app_logger - INFO - DELETE /tasks/1 | testclient | 0.0073s | 155057ac-5b16-4396-ba6f-f700a14f94be
+2026-03-10 16:08:29,608 - INFO - app_logger - POST /tasks/1/upload | testclient | 0.0164s | 77639da1-f8e2-48d2-936a-42221546a8e7
+2026-03-10 16:08:29,608 - app_logger - INFO - POST /tasks/1/upload | testclient | 0.0164s | 77639da1-f8e2-48d2-936a-42221546a8e7

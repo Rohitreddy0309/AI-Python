@@ -1,15 +1,30 @@
-from sqlalchemy.orm import Session
-from repository import tasks_repo as repo
-from schemas.tasks_schemas import TaskCreate, TaskUpdate
+"""Business logic for task operations."""
 
-def list_all_tasks(db: Session):
-    return repo.get_all_tasks(db)
+from repository.tasks_repo import TaskRepository
 
-def create_new_task(db: Session, task: TaskCreate):    
-    return repo.create_task(db, task)
 
-def update_task(db: Session, task_id: int, task_data: TaskUpdate):
-    return repo.update_task(db, task_id, task_data)
+class TaskService:
+    """Service layer handling task CRUD operations."""
 
-def delete_task(db: Session, task_id: int):
-    return repo.delete_task(db, task_id)
+    def __init__(self, repository: TaskRepository):
+        self.repository = repository
+
+    def list_all_tasks(self):
+        """Return a list of all tasks."""
+        return self.repository.get_all_tasks()
+
+    def create_new_task(self, task):
+        """Create a new task."""
+        return self.repository.create_task(task)
+
+    def update_task(self, task_id, task_data):
+        """Update an existing task by ID."""
+        return self.repository.update_task(task_id, task_data)
+
+    def delete_task(self, task_id):
+        """Delete a task by ID."""
+        return self.repository.delete_task(task_id)
+
+    def attach_file_to_task(self, task_id, filename):
+        """Attach a filename to a task record."""
+        return self.repository.update_task_file(task_id, filename)

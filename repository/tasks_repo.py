@@ -1,82 +1,72 @@
-from sqlalchemy.exc import SQLAlchemyError
-from fastapi import HTTPException, Depends
+"""Repository for task database operations."""
+
 from sqlalchemy.orm import Session
-from schemas.tasks_schemas import TaskCreate, TaskUpdate
+
 from models.tasks import Task
-from core.config import logger
-from utils.exceptions import NotFoundException, DatabaseException, DuplicateEntryException
 
-# CRUD operations for Task model
 
-def get_all_tasks(db: Session):
-    logger.debug("Fetching all tasks from the database")
-    try:
-        tasks= db.query(Task).all()
-        logger.info(f"Retrieved {len(tasks)} tasks from DB")
-        return tasks
-    except Exception as e:
-        logger.error(f"Error fetching tasks: {e}")
-        raise DatabaseException("Error fetching tasks from the database")
+class TaskRepository:
+    """CRUD operations for the Task model."""
 
-def get_task_by_id(db: Session, task_id: int):
-    logger.debug(f"Fetching task with ID: {task_id}")
-    try:
-        tasks= db.query(Task).filter(Task.id == task_id).first()
-        if tasks:
-            logger.info(f"Task found:{tasks.title}")
-        else:
-            logger.warning(f"No task found with ID: {task_id}")
-        return tasks
-    except Exception as e:
-        logger.error(f"Error fetching task: {e}")
-        raise DatabaseException("Error fetching task from the database")
-    
+    def __init__(self, db: Session):
+        self.db = db
 
-def create_task(db: Session, task: TaskCreate):
-    logger.debug(f"Creating new task with data: {task}")
-    try:
-        new_task = Task(title=task.title,description=task.description,completed=task.completed)
-        db.add(new_task)
-        db.commit()
-        db.refresh(new_task)
-        logger.info(f"Task created successfully with ID: {new_task.id}")
+    def get_all_tasks(self):
+        """Return all task records."""
+        return self.db.query(Task).all()
+
+    def create_task(self, task):
+        """Persist a new task record."""
+        new_task = Task(
+            title=task.title, description=task.description, completed=task.completed
+        )
+
+        self.db.add(new_task)
+        self.db.commit()
+        self.db.refresh(new_task)
+
         return new_task
-    except SQLAlchemyError as e:
-        logger.error(f"Error creating task: {e}")
-        db.rollback()
-        raise DatabaseException("Error creating task in the database")
 
-def update_task(db: Session, task_id: int, task_data: TaskUpdate):
-    logger.debug(f"Updating task with ID: {task_id} using data: {task_data}")
-    db_task = get_task_by_id(db, task_id)
-    if not db_task:
-        logger.warning(f"Task with ID: {task_id} not found for update")
-        return None
-    try:
-        for key, value in task_data.model_dump().items():
-            setattr(db_task, key, value)
-    
-        db.commit()
-        db.refresh(db_task)
-        logger.info(f"Task with ID: {task_id} updated successfully")
-        return db_task
-    except SQLAlchemyError as e:
-        logger.error(f"Error updating task: {e}")
-        db.rollback()
-        raise DatabaseException("Error updating task in the database")
-    
-def delete_task(db: Session, task_id: int):
-    logger.debug(f"Deleting task with ID: {task_id}")
-    db_task = get_task_by_id(db, task_id)
-    if not db_task:
-        logger.warning(f"Task with ID: {task_id} not found for deletion")   
-        return None
-    try:
-        db.delete(db_task)
-        db.commit()
-        logger.info(f"Task with ID: {task_id} deleted successfully")
-        return db_task
-    except SQLAlchemyError as e:
-        logger.error(f"Error deleting task: {e}")
-        db.rollback()
-        raise DatabaseException("Error deleting task from the database")
+    def update_task(self, task_id, task_data):
+        """Update an existing task record."""
+
+        task = self.db.query(Task).filter(Task.id == task_id).first()
+
+        if not task:
+            return None
+
+        task.title = task_data.title
+        task.description = task_data.description
+        task.completed = task_data.completed
+
+        self.db.commit()
+        self.db.refresh(task)
+
+        return task
+
+    def delete_task(self, task_id):
+        """Delete a task record."""
+
+        task = self.db.query(Task).filter(Task.id == task_id).first()
+
+        if not task:
+            return None
+
+        self.db.delete(task)
+        self.db.commit()
+
+        return task
+
+    def update_task_file(self, task_id, filename):
+        """Attach a file name to an existing task record."""
+
+        task = self.db.query(Task).filter(Task.id == task_id).first()
+
+        if not task:
+            return None
+
+        task.file_name = filename
+        self.db.commit()
+        self.db.refresh(task)
+
+        return task

@@ -1,23 +1,31 @@
-from sqlalchemy.orm import Session
-from repository import employees_repo
+"""Business logic for employee operations."""
+
+from repository.employees_repo import EmployeeRepository
+from schemas.emp_schemas import EmployeeCreate, EmployeeUpdate
 
 
+class EmployeeService:
+    """Service layer handling employee CRUD operations."""
 
-def list_all_employees(db: Session):
-    employees = employees_repo.get_all_employees(db)
-    return employees
+    def __init__(self, repository: EmployeeRepository):
+        self.repository = repository
 
-def get_employee_by_id(db: Session, employee_id: int):
-    return employees_repo.get_employee_by_id(db, employee_id)
+    def list_all_employees(self):
+        """Return a list of all employees."""
+        return self.repository.get_all_employees()
 
-def create_employee(db: Session, employee_data: dict):
-    return employees_repo.create_employee_db(db, employee_data)       
+    def create_employee(self, employee: EmployeeCreate):
+        """Create a new employee.
 
-def update_employee(db: Session, employee_id: int, employee_data):
-    return employees_repo.update_employee(db, employee_id, employee_data)
+        Args:
+            employee: The validated employee payload.
+        """
+        return self.repository.create_employee(employee)
 
-def delete_employee(db: Session, employee_id: int):
-    return employees_repo.delete_employee(db, employee_id)
+    def update_employee(self, emp_id: int, employee: EmployeeUpdate):
+        """Update an existing employee by ID."""
+        return self.repository.update_employee(emp_id, employee)
 
-def get_employees_by_department(db: Session, department: str):
-    return employees_repo.get_employees_by_department(db, department)
+    def delete_employee(self, emp_id: int):
+        """Delete an employee by ID."""
+        return self.repository.delete_employee(emp_id)

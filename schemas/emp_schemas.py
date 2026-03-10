@@ -1,6 +1,11 @@
-from pydantic import BaseModel,EmailStr, constr
+"""Pydantic models for employee requests/responses."""
+
+from pydantic import BaseModel, ConfigDict, EmailStr
+
 
 class EmployeeBase(BaseModel):
+    """Shared fields between create/update/response schemas."""
+
     name: str
     department: str
     project: str
@@ -8,14 +13,19 @@ class EmployeeBase(BaseModel):
     blood_group: str
     PH_number: str
 
+
 class EmployeeCreate(EmployeeBase):
-    pass
+    """Schema used when creating a new employee."""
+
 
 class EmployeeUpdate(EmployeeBase):
-    pass
+    """Schema used when updating an existing employee."""
+
 
 class EmployeeResponse(EmployeeBase):
+    """Schema returned in responses for employee records."""
+
     id: int
 
-    class Config:
-        from_attributes = True
+
+model_config = ConfigDict(from_attributes=True)

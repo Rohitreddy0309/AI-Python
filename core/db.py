@@ -1,20 +1,22 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-import os
-from dotenv import  load_dotenv
-from core.config import SQLALCHEMY_DATABASE_URL
-load_dotenv()
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+"""Database setup and session utilities."""
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+from core.config import settings
+
+engine = create_engine(settings.DATABASE_URL)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 Base = declarative_base()
 
+
 def get_db():
+    """Yield a database session, closing it after use."""
+
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-print("✅ DATABASE URL:", SQLALCHEMY_DATABASE_URL)
