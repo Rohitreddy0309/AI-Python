@@ -1,17 +1,18 @@
 import time
 import uuid
+
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
+
 from core.database import SessionLocal
 from repositories.request_log_repo import create_log
-
 
 status_messages = {
     200: "Success",
     201: "Created",
     400: "Bad Request",
     404: "User Not Found",
-    500: "Internal Server Error"
+    500: "Internal Server Error",
 }
 
 
@@ -23,7 +24,7 @@ class RequestLoggerMiddleware(BaseHTTPMiddleware):
         request_id = str(uuid.uuid4())
 
         ip_address = request.client.host
-       
+
         endpoint = request.url.path
 
         user_identifier = None
@@ -51,15 +52,18 @@ class RequestLoggerMiddleware(BaseHTTPMiddleware):
         db = SessionLocal()
 
         try:
-            create_log(db, {
-    "user_id": user_identifier,
-    "request_id": request_id,
-    "endpoint": endpoint,
-    "ip_address": ip_address,
-    "status_code": response.status_code,
-    "status_message": status_message,
-    "response_time": response_time
-}) 
+            create_log(
+                db,
+                {
+                    "user_id": user_identifier,
+                    "request_id": request_id,
+                    "endpoint": endpoint,
+                    "ip_address": ip_address,
+                    "status_code": response.status_code,
+                    "status_message": status_message,
+                    "response_time": response_time,
+                },
+            )
         finally:
             db.close()
 

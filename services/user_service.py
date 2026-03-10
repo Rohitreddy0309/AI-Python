@@ -1,15 +1,17 @@
-from sqlalchemy.orm import Session
-from fastapi import UploadFile, BackgroundTasks, Request
-from models.user import User
-from repositories import user_repository
-from utils.exceptions import UserNotFoundException, DuplicateEmailException
-from Schemas.user import UsersBulkUpdate
 import os
 import shutil
 
+from fastapi import BackgroundTasks, Request, UploadFile
+from sqlalchemy.orm import Session
+
 from core.config import settings
+from models.user import User
+from repositories import user_repository
+from Schemas.user import UsersBulkUpdate
+from utils.exceptions import DuplicateEmailException, UserNotFoundException
 
 UPLOAD_FOLDER = settings.UPLOAD_FOLDER
+
 
 def save_photo(photo: UploadFile):
 
@@ -30,6 +32,7 @@ def generate_photo_url(request: Request, filename):
 
     return None
 
+
 def list_all_users(db: Session, request: Request):
 
     users = user_repository.get_all_users(db)
@@ -38,6 +41,7 @@ def list_all_users(db: Session, request: Request):
         user.photo = generate_photo_url(request, user.photo)
 
     return users
+
 
 def get_user(db: Session, user_id: int, request: Request):
 
@@ -57,7 +61,7 @@ def create_user_service(
     name: str,
     email: str,
     department: str,
-    photo: UploadFile
+    photo: UploadFile,
 ):
 
     email = email.strip()
@@ -72,23 +76,13 @@ def create_user_service(
     if photo:
         filename = save_photo(photo)
 
-    new_user = User(
-        name=name,
-        email=email,
-        department=department,
-        photo=filename
-    )
+    new_user = User(name=name, email=email, department=department, photo=filename)
 
     return user_repository.create_user(db, new_user)
 
 
 def update_user_service(
-    db: Session,
-    user_id: int,
-    name,
-    email,
-    department,
-    photo: UploadFile
+    db: Session, user_id: int, name, email, department, photo: UploadFile
 ):
 
     user = user_repository.get_user_by_id(db, user_id)

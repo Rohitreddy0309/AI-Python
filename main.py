@@ -2,12 +2,10 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from api.v1.router import router
-from utils.handlers import register_exception_handlers
 from core.database import base, engine
 from core.request_logger import RequestLoggerMiddleware
-
 from models.file_data import FileData
-
+from utils.handlers import register_exception_handlers
 
 app = FastAPI()
 

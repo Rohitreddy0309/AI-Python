@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from models.user import User
 
 
@@ -38,5 +39,4 @@ def bulk_create(db: Session, users: list[User]):
 
     for user in users:
         db.refresh(user)
-
     return users

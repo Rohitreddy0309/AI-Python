@@ -1,0 +1,55 @@
+[MASTER]
+
+# Ignore virtual environment and cache
+ignore=venv,__pycache__
+
+# Allow project imports like core.database
+init-hook='import sys; sys.path.append(".")'
+
+
+[MESSAGES CONTROL]
+
+# Disable rules that are not useful for FastAPI / SQLAlchemy projects
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
+    invalid-name,
+    import-error,
+    not-callable
+
+[FORMAT]
+
+# Maximum characters on a single line
+max-line-length=100
+
+
+[DESIGN]
+
+# Allow fewer public methods for models
+min-public-methods=0
+
+
+[TYPECHECK]
+
+# SQLAlchemy dynamic attributes
+ignored-modules=sqlalchemy
+ignored-classes=SQLAlchemy
+
+
+[BASIC]
+
+# Naming conventions
+good-names=i,j,k,ex,Run,_,db,id
+
+
+[REPORTS]
+
+# Disable full report at end
+reports=no
+
+
+[LOGGING]
+
+logging-format-style=old

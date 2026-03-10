@@ -11,8 +11,8 @@ class DuplicateEmailException(BaseAppException):
 
     def __init__(self, message="Email already exists"):
         super().__init__(message, 409)
-        
-        
+
+
 class UnauthorizedException(BaseAppException):
 
     def __init__(self, message="Unauthorized access"):

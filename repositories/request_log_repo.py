@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
+
 from models.request_logs import RequestLog
+
 
 def create_log(db: Session, log_data: dict):
 

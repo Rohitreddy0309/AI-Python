@@ -1,6 +1,8 @@
-from sqlalchemy import Column, Integer, String, Boolean,DateTime
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.sql import func
+
 from core.database import base
+
 
 class User(base):
     __tablename__ = "users"
@@ -11,8 +13,6 @@ class User(base):
     department = Column(String)
     is_active = Column(Boolean, default=True)
     created_date = Column(
-    DateTime(timezone=True),
-    server_default=func.now(),
-    nullable=False
-)
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
     photo = Column(String, nullable=True)

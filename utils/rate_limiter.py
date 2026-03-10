@@ -1,4 +1,5 @@
 import time
+
 from fastapi import HTTPException
 
 user_requests = {}
@@ -16,18 +17,14 @@ def rate_limiter(user_id: int):
 
     request_times = user_requests[user_id]
 
-    request_times = [
-        t for t in request_times
-        if current_time - t < WINDOW
-    ]
+    request_times = [t for t in request_times if current_time - t < WINDOW]
 
     user_requests[user_id] = request_times
 
     if len(request_times) >= LIMIT:
 
         raise HTTPException(
-            status_code=429,
-            detail="Rate limit exceeded. Try again later."
+            status_code=429, detail="Rate limit exceeded. Try again later."
         )
 
     user_requests[user_id].append(current_time)
