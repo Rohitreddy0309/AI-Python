@@ -25,4 +25,4 @@ class Plant(Base):
     file_path = Column(String, nullable=True)
     file_status = Column(String, nullable=True)
     file_result = Column(Text, nullable=True)
-    
+  
