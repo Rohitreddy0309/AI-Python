@@ -28,9 +28,6 @@ class StudentRepository:
     def get_student(self, db: Session, student_id: int):
         return db.query(Student).filter(Student.id == student_id).first()
 
-    def get_student(self, db: Session, student_id: int):
-        return db.query(Student).filter(Student.id == student_id).first()
-
     def update_student(self, db: Session, student, name: str, age: int, marks: int):
         student.name = name
         student.age = age
