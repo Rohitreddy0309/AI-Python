@@ -1,3 +1,11 @@
+"""
+Main FastAPI application setup.
+
+This module initializes the FastAPI app, registers middleware,
+exception handlers, static file serving, database table creation,
+and includes API routers.
+"""
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 

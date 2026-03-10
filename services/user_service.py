@@ -1,3 +1,11 @@
+"""
+Service layer for user-related operations.
+
+This module contains business logic for user management such as
+creating, updating, deleting, and retrieving users. It also handles
+photo uploads, URL generation for user photos, and bulk operations.
+"""
+
 import os
 import shutil
 
@@ -14,6 +22,15 @@ UPLOAD_FOLDER = settings.UPLOAD_FOLDER
 
 
 def save_photo(photo: UploadFile):
+    """
+    Save the uploaded user photo to the uploads folder.
+
+    Args:
+        photo (UploadFile): Uploaded photo file.
+
+    Returns:
+        str: Filename of the saved photo.
+    """
 
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -26,6 +43,16 @@ def save_photo(photo: UploadFile):
 
 
 def generate_photo_url(request: Request, filename):
+    """
+    Generate the accessible URL for a stored user photo.
+
+    Args:
+        request (Request): FastAPI request object used to build the URL.
+        filename (str): Name of the stored photo file.
+
+    Returns:
+        str | None: Full URL to access the photo or None if no filename exists.
+    """
 
     if filename:
         return str(request.url_for("uploads", path=filename))
@@ -34,6 +61,16 @@ def generate_photo_url(request: Request, filename):
 
 
 def list_all_users(db: Session, request: Request):
+    """
+    Retrieve all users and attach their photo URLs.
+
+    Args:
+        db (Session): Database session.
+        request (Request): FastAPI request object.
+
+    Returns:
+        list: List of user objects with photo URLs.
+    """
 
     users = user_repository.get_all_users(db)
 
@@ -44,6 +81,20 @@ def list_all_users(db: Session, request: Request):
 
 
 def get_user(db: Session, user_id: int, request: Request):
+    """
+    Retrieve a single user by ID and attach the photo URL.
+
+    Args:
+        db (Session): Database session.
+        user_id (int): ID of the user to retrieve.
+        request (Request): FastAPI request object.
+
+    Returns:
+        User: Retrieved user object.
+
+    Raises:
+        UserNotFoundException: If the user does not exist.
+    """
 
     user = user_repository.get_user_by_id(db, user_id)
 
@@ -63,6 +114,23 @@ def create_user_service(
     department: str,
     photo: UploadFile,
 ):
+    """
+    Create a new user with optional photo upload.
+
+    Args:
+        db (Session): Database session.
+        background_tasks (BackgroundTasks): FastAPI background task handler.
+        name (str): Name of the user.
+        email (str): Email address of the user.
+        department (str): Department of the user.
+        photo (UploadFile): Optional uploaded photo.
+
+    Returns:
+        User: Newly created user record.
+
+    Raises:
+        DuplicateEmailException: If the email already exists.
+    """
 
     email = email.strip()
 
@@ -84,6 +152,24 @@ def create_user_service(
 def update_user_service(
     db: Session, user_id: int, name, email, department, photo: UploadFile
 ):
+    """
+    Update user details and optionally update the user photo.
+
+    Args:
+        db (Session): Database session.
+        user_id (int): ID of the user to update.
+        name (str): Updated name.
+        email (str): Updated email.
+        department (str): Updated department.
+        photo (UploadFile): Optional updated photo.
+
+    Returns:
+        User: Updated user object.
+
+    Raises:
+        UserNotFoundException: If the user does not exist.
+        DuplicateEmailException: If the updated email already exists.
+    """
 
     user = user_repository.get_user_by_id(db, user_id)
 
@@ -114,6 +200,19 @@ def update_user_service(
 
 
 def delete_user_service(db: Session, user_id: int):
+    """
+    Delete a user and remove their stored photo if it exists.
+
+    Args:
+        db (Session): Database session.
+        user_id (int): ID of the user to delete.
+
+    Returns:
+        dict: Confirmation message.
+
+    Raises:
+        UserNotFoundException: If the user does not exist.
+    """
 
     user = user_repository.get_user_by_id(db, user_id)
 
@@ -133,6 +232,16 @@ def delete_user_service(db: Session, user_id: int):
 
 
 def bulk_create_users_service(db: Session, users):
+    """
+    Create multiple users in a single operation.
+
+    Args:
+        db (Session): Database session.
+        users (list): List of user data objects.
+
+    Returns:
+        list | dict: Created users or error message if duplicate emails exist.
+    """
 
     emails = [user.email.strip() for user in users]
 
@@ -155,6 +264,19 @@ def bulk_create_users_service(db: Session, users):
 
 
 def bulk_update_users_service(db: Session, users: list[UsersBulkUpdate]):
+    """
+    Update multiple users in a single operation.
+
+    Args:
+        db (Session): Database session.
+        users (list[UsersBulkUpdate]): List of user update objects.
+
+    Returns:
+        list | dict: Updated users or message if update list is empty.
+
+    Raises:
+        UserNotFoundException: If any user in the list does not exist.
+    """
 
     if not users:
         return {"message": "Empty update list"}

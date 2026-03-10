@@ -1,3 +1,11 @@
+"""
+SQLAlchemy model for storing user information.
+
+This model represents the users table in the database and contains
+fields related to user identity, department, account status,
+creation timestamp, and optional profile photo.
+"""
+
 from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.sql import func
 
@@ -5,6 +13,13 @@ from core.database import base
 
 
 class User(base):
+    """
+    Database model representing a user.
+
+    Stores user profile information such as name, email,
+    department, active status, creation date, and photo path.
+    """
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
