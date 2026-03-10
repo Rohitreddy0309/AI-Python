@@ -17,7 +17,6 @@ def get_db():
         db.close()
 
 
-# Upload file
 @router.post("/upload", response_model=FileResponse, dependencies=[Depends(rate_limiter)])
 async def upload_file(
     file: UploadFile = File(...),
@@ -26,13 +25,10 @@ async def upload_file(
     db_file = await file_service.save_file(db, file)
     return  db_file
 
-# Show all files
 @router.get("/files", response_model=list[FileResponse])
 def get_files(db: Session = Depends(get_db)):
     return file_service.get_files(db)
 
-
-# Delete file
 @router.delete("/{file_id}")
 def delete_file(file_id: int, db: Session = Depends(get_db)):
     return file_service.delete_file(db, file_id)

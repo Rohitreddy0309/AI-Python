@@ -1,11 +1,10 @@
 import time
 from fastapi import Request, HTTPException
 
-# store requests
 request_log = {}
 
 MAX_REQUESTS = 10
-TIME_WINDOW = 60   # seconds
+TIME_WINDOW = 60   
 
 
 async def rate_limiter(request: Request):
@@ -16,7 +15,6 @@ async def rate_limiter(request: Request):
     if user_ip not in request_log:
         request_log[user_ip] = []
 
-    # remove old requests
     request_log[user_ip] = [
         t for t in request_log[user_ip]
         if current_time - t < TIME_WINDOW

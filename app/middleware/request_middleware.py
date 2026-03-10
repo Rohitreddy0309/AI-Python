@@ -17,7 +17,6 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         student_name = None
         file_name = None
 
-        # Read request body
         try:
             body = await request.body()
 

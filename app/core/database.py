@@ -12,7 +12,6 @@ SessionLocal = sessionmaker(
 
 Base = declarative_base()
 
-# WARNING: This deletes all data in your tables
 Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
