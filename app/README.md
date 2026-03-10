@@ -30,78 +30,6 @@ This project follows a clean layered architecture (Routes → Services → Repos
 | Pytest              | Testing              |
 
 
-# Project Architecture
-The project uses a layered architecture.
-
-Client Request
-      ↓
-API Routes
-      ↓
-Services (Business Logic)
-      ↓
-Repositories (DB Queries)
-      ↓
-Database
-
-Benefits:
-
--->Clean code separation
--->Easy debugging
--->Scalable architecture
--->Easy to maintain
-
-# Project Structure
-FASTAPI
-
-│
-├── app
-│   ├── api
-│   │   └── v1
-│   │       └── routes
-│   │           ├── file.py
-│   │           ├── student.py
-│   │           └── router.py
-│
-│   ├── core
-│   │   ├── config.py
-│   │   ├── database.py
-│   │   └── logging_config.py
-│
-│   ├── middleware
-│   │   └── request_middleware.py
-│
-│   ├── models
-│   │   ├── file.py
-│   │   ├── request_log.py
-│   │   └── student.py
-│
-│   ├── repositories
-│   │   ├── file_repository.py
-│   │   ├── request_log_repository.py
-│   │   └── student_repository.py
-│
-│   ├── schemas
-│   │   ├── file.py
-│   │   └── student_schema.py
-│
-│   ├── services
-│   │   ├── file_service.py
-│   │   └── student_service.py
-│
-│   ├── utils
-│   │   ├── constants.py
-│   │   ├── exceptions.py
-│   │   └── rate_limiter.py
-│
-│   └── main.py
-│
-├── uploads
-├── tests
-│   └── test_user.py
-│
-├── requirements.txt
-└── README.md
-
 # Installation
 1) Clone Repository
    > git clone https://github.com/chethangoundla-pixel/fastapi-project.git
@@ -125,24 +53,9 @@ FASTAPI
     Swagger Documentation:
     http://127.0.0.1:8000/docs
 
-# API Endpoints
-# Student APIs 
-
-| Method | Endpoint       | Description       |
-| ------ | -------------- | ----------------- |
-| POST   | /students      | Create student    |
-| GET    | /students      | Get all students  |
-| GET    | /students/{id} | Get student by ID |
-| PUT    | /students/{id} | Update student    |
-| DELETE | /students/{id} | Delete student    |
-
-# File APIs
-
-| Method | Endpoint | Description         |
-| ------ | -------- | ------------------- |
-| POST   | /files   | Upload file         |
-| GET    | /files   | List uploaded files |
-| Delete | /files   | Delete file         |
+# .env file
+DATABASE_URL=postgresql://postgres:Chethan2004@localhost:5432/studentdb
+UPLOAD_DIR=app/uploads
 
 # Middleware Features
 
@@ -152,18 +65,6 @@ The custom middleware performs:
 -->Unique request ID generation
 -->Client IP address tracking
 -->Log storage in database
-
-# Request Logging Middleware
-The application includes custom middleware that logs API requests.
-
-Logged information includes:
--->Request ID
--->API endpoint
--->HTTP method
--->Client IP address
--->Response time
--->Student name (if present in request)
-Logs are stored in the request_logs table.
 
 
 # Rate Limiting

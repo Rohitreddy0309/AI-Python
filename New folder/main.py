@@ -1,10 +1,12 @@
-from fastapi import FastAPI, Depends
+from typing import Generator, List
+
+from database import SessionLocal, engine
 from sqlalchemy.orm import Session
-from database import engine, SessionLocal
 from student_model import Base
-from student_service import StudentService
 from student_schema import StudentCreateSchema, StudentResponseSchema
-from typing import List, Generator
+from student_service import StudentService
+
+from fastapi import Depends, FastAPI
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,7 +15,7 @@ app = FastAPI(title="Student CRUD API")
 student_service = StudentService()
 
 
-def get_db() -> Generator[Session, None,None]:
+def get_db() -> Generator[Session, None, None]:
     """
     Database session dependency.
     """
@@ -25,10 +27,7 @@ def get_db() -> Generator[Session, None,None]:
 
 
 @app.post("/students/", response_model=StudentResponseSchema)
-def create_student(
-    student: StudentCreateSchema,
-    db: Session = Depends(get_db)
-):
+def create_student(student: StudentCreateSchema, db: Session = Depends(get_db)):
     return student_service.create_student(db, student)
 
 
@@ -44,9 +43,7 @@ def get_student(student_id: int, db: Session = Depends(get_db)):
 
 @app.put("/students/{student_id}", response_model=StudentResponseSchema)
 def update_student(
-    student_id: int,
-    student: StudentCreateSchema,
-    db: Session = Depends(get_db)
+    student_id: int, student: StudentCreateSchema, db: Session = Depends(get_db)
 ):
     return student_service.update_student(db, student_id, student)
 

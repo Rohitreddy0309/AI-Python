@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
 from database import Base
+from sqlalchemy import Column, Integer, String
+
 
 class Student(Base):
     """
@@ -12,4 +13,3 @@ class Student(Base):
     name = Column(String, nullable=False)
     age = Column(Integer, nullable=False)
     marks = Column(Integer, nullable=False)
-

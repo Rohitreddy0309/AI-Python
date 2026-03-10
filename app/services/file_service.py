@@ -1,10 +1,18 @@
+"""
+File service layer.
+
+Contains business logic for file operations such as
+saving, retrieving, and deleting files.
+"""
+
 import os
-from app.models.file import File
-from fastapi import UploadFile, HTTPException
+
 from sqlalchemy.orm import Session
 
-from app.repositories.file_repository import FileRepository
 from app.core.config import settings
+from app.models.file import File
+from app.repositories.file_repository import FileRepository
+from fastapi import HTTPException, UploadFile
 
 
 def get_lowest_available_id(db: Session):
@@ -19,12 +27,26 @@ def get_lowest_available_id(db: Session):
 
     return expected
 
+
 class FileService:
+    """
+    Handles business logic for file operations.
+    """
 
     def __init__(self):
         self.repository = FileRepository()
 
     async def save_file(self, db: Session, upload_file: UploadFile):
+        """
+        Save an uploaded file to disk and database.
+
+        Args:
+            db (Session): Database session
+            upload_file (UploadFile): Uploaded file
+
+        Returns:
+            File: Stored file record
+        """
         os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
         file_path = os.path.join(settings.UPLOAD_DIR, upload_file.filename)
 
@@ -35,10 +57,7 @@ class FileService:
         new_id = get_lowest_available_id(db)
 
         db_file = self.repository.create_file(
-            db,
-            new_id,
-            upload_file.filename,
-            file_path
+            db, new_id, upload_file.filename, file_path
         )
 
         return db_file

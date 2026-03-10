@@ -1,10 +1,11 @@
-from fastapi import FastAPI, UploadFile, File, BackgroundTasks, Depends
-from sqlalchemy.orm import Session
 import os
 import time
 
-from database import engine, get_db, SessionLocal
+from database import SessionLocal, engine, get_db
 from models import Base, UploadedFile
+from sqlalchemy.orm import Session
+
+from fastapi import BackgroundTasks, Depends, FastAPI, File, UploadFile
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -13,6 +14,7 @@ app = FastAPI()
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 
 # ---------------------------------
 # Background Processing Function  |
@@ -30,6 +32,7 @@ def process_file(file_id: int):
 
     db.close()
 
+
 # -----------------------------
 # Upload Endpoint
 # -----------------------------
@@ -37,7 +40,7 @@ def process_file(file_id: int):
 def upload_file(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
@@ -46,10 +49,7 @@ def upload_file(
         buffer.write(file.file.read())
 
     # Save metadata in DB
-    db_file = UploadedFile(
-        filename=file.filename,
-        status="processing"
-    )
+    db_file = UploadedFile(filename=file.filename, status="processing")
 
     db.add(db_file)
     db.commit()
@@ -59,6 +59,7 @@ def upload_file(
     background_tasks.add_task(process_file, db_file.id)
 
     return db_file
+
 
 # -----------------------------
 # Check File Status
