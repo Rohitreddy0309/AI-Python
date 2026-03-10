@@ -6,7 +6,6 @@ ignore=venv,__pycache__
 # Allow project imports like core.database
 init-hook='import sys; sys.path.append(".")'
 
-
 [MESSAGES CONTROL]
 
 # Disable rules that are not useful for FastAPI / SQLAlchemy projects
