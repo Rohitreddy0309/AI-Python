@@ -17,3 +17,7 @@ __pycache__/
 
 # Database or temp files
 *.db
+
+# Logs
+logs/
+*.log
