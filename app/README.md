@@ -54,7 +54,7 @@ This project follows a clean layered architecture (Routes → Services → Repos
     http://127.0.0.1:8000/docs
 
 # .env file
-DATABASE_URL=postgresql://postgres:Chethan2004@localhost:5432/studentdb
+DATABASE_URL=postgresql://postgres:password@localhost:5432/studentdb
 UPLOAD_DIR=app/uploads
 
 # Middleware Features
